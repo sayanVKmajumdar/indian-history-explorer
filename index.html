@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian History Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ভারতের ইতিহাস (Indian History)</h1>
+        <nav>
+            <button class="tab-btn active" onclick="openPeriod('ancient', 'maps/ancient-india.jpg')">Ancient India</button>
+            <button class="tab-btn" onclick="openPeriod('medieval', 'maps/medieval-india.jpg')">Medieval India</button>
+            <button class="tab-btn" onclick="openPeriod('modern', 'maps/modern-india.jpg')">Modern India</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Left Side: Topics List -->
+        <section class="content-section">
+            <div id="ancient" class="period-content active">
+                <h2>প্রাচীন ভারত (Ancient India)</h2>
+                
+                <button class="accordion" onclick="updateMap('maps/ivc-map.jpg')">সিন্ধু সভ্যতা (Indus Valley Civilization)</button>
+                <div class="panel">
+                    <p>হরপ্পা ও মহেঞ্জোদারোর নগর পরিকল্পনা, অর্থনীতি, ব্রোঞ্জ যুগের বৈশিষ্ট্য এবং সভ্যতার পতন সংক্রান্ত বিস্তারিত তথ্য এখানে থাকবে...</p>
+                </div>
+
+                <button class="accordion" onclick="updateMap('maps/maurya-map.jpg')">মৌর্য সাম্রাজ্য (Mauryan Empire)</button>
+                <div class="panel">
+                    <p>চন্দ্রগুপ্ত মৌর্য, অশোকের ধম্ম নীতি, মৌর্য প্রশাসন ও সাম্রাজ্যের বিস্তার। (এখানে আপনার বিস্তারিত নোটস বসাবেন)...</p>
+                </div>
+                
+                <!-- এখানে প্রাচীন ভারতের বাকি সব টপিক পরপর অ্যাড করবেন -->
+            </div>
+
+            <div id="medieval" class="period-content">
+                <h2>মধ্যযুগীয় ভারত (Medieval India)</h2>
+                
+                <button class="accordion" onclick="updateMap('maps/delhi-sultanate-map.jpg')">দিল্লী সুলতানি যুগ (Delhi Sultanate)</button>
+                <div class="panel">
+                    <p>দাস, খলজী, তুঘলক, সৈয়দ ও লোদী বংশের শাসন। আলাউদ্দিন খলজীর বাজারদর নিয়ন্ত্রণ...</p>
+                </div>
+
+                <button class="accordion" onclick="updateMap('maps/mughal-map.jpg')">মুঘল সাম্রাজ্য (Mughal Empire)</button>
+                <div class="panel">
+                    <p>বাবর থেকে আওরঙ্গজেব পর্যন্ত সাম্রাজ্য বিস্তার, মনসবদারি প্রথা, স্থাপত্য ও সাহিত্য...</p>
+                </div>
+            </div>
+
+            <div id="modern" class="period-content">
+                <h2>আধুনিক ভারত (Modern India)</h2>
+                
+                <button class="accordion" onclick="updateMap('maps/revolt-1857-map.jpg')">১৮৫৭ সালের মহাবিদ্রোহ (Revolt of 1857)</button>
+                <div class="panel">
+                    <p>সিপাহী বিদ্রোহের কারণ, বিভিন্ন কেন্দ্রের নেতৃত্ব (কানপুর, লক্ষ্ণৌ, ঝাঁসি) এবং ফলাফল...</p>
+                </div>
+
+                <button class="accordion" onclick="updateMap('maps/freedom-struggle-map.jpg')">গান্ধীযুগ ও স্বাধীনতা সংগ্রাম</button>
+                <div class="panel">
+                    <p>অসহযোগ, আইন অমান্য ও ভারত ছাড়ো আন্দোলন। নেতাজীর আজাদ হিন্দ ফৌজ...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Side: Map Display -->
+        <aside class="map-section">
+            <h3>ঐতিহাসিক মানচিত্র</h3>
+            <div class="map-container">
+                <img id="history-map" src="maps/ancient-india.jpg" alt="Map of Indian History">
+                <p id="map-caption">ম্যাপটি দেখতে বামদিকের টপিকে ক্লিক করুন</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
