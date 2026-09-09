@@ -1,491 +1,931 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Great Indian History | Premium Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --dark-bg: rgba(15, 23, 42, 0.85); /* Deep Royal Navy Glass */
-            --panel-bg: rgba(30, 41, 59, 0.95);
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-glow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Indian History Explorer — A Chronicle for Competitive Examinations</title>
+<meta name="description" content="Exhaustive, exam-ready notes on Indian history — Ancient, Medieval & Modern — with dynamic vintage map plates. Built for SSC CGL, UPSC & State PCS aspirants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+  :root{
+    --paper:#ece0c4;
+    --paper-2:#f6edd7;
+    --paper-3:#e3d3ae;
+    --ink:#261d10;
+    --ink-soft:#52442d;
+    --ink-faint:#7c6a4d;
+    --line:#c6b183;
+    --line-soft:#d8c9a2;
+    --gold:#a07c26;
+    --red:#8f2f1e;
+    --red-deep:#6f2316;
+    --shadow:0 2px 0 rgba(38,29,16,.08), 0 14px 34px -14px rgba(38,29,16,.35);
+  }
 
-        body {
-            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
-            /* Aesthetic Historical Background */
-            background: linear-gradient(rgba(10, 15, 25, 0.85), rgba(10, 15, 25, 0.95)), url('https://images.unsplash.com/photo-1604514628550-37477afdf4e3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(255,250,235,.55), transparent 60%),
+      radial-gradient(140% 120% at 50% 100%, rgba(120,90,40,.22), transparent 55%),
+      linear-gradient(180deg,#efe3c7 0%, var(--paper) 45%, #e6d6b0 100%);
+    color:var(--ink);
+    font-family:'Spectral',Georgia,serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  body::before{ /* fixed paper grain */
+    content:""; position:fixed; inset:0; z-index:60; pointer-events:none;
+    opacity:.34; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.42 0 0 0 0 0.34 0 0 0 0 0.22 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--red); color:#f8f0dd}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--paper-3)}
+  ::-webkit-scrollbar-thumb{background:#b29c6b;border:2px solid var(--paper-3);border-radius:8px}
 
-        /* Header & Navigation */
-        header {
-            text-align: center;
-            padding: 50px 20px 30px;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-        }
+  .font-display{font-family:'Fraunces',serif}
+  .font-fell{font-family:'IM Fell English SC',serif}
+  .font-serif-it{font-family:'IM Fell English',serif}
+  .font-mono2{font-family:'IBM Plex Mono',monospace}
 
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            color: var(--gold);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
+  .kicker{letter-spacing:.42em;text-transform:uppercase}
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+  /* ── ornamental rule ───────────────────────── */
+  .orn-rule{display:flex;align-items:center;gap:14px}
+  .orn-rule::before,.orn-rule::after{content:"";height:1px;flex:1}
+  .orn-rule::before{background:linear-gradient(90deg,transparent,var(--line))}
+  .orn-rule::after{background:linear-gradient(90deg,var(--line),transparent)}
+  .orn-diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 0 1px rgba(160,124,38,.35), inset 0 0 2px rgba(255,244,210,.7)}
 
-        .tab-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold-light);
-            padding: 12px 35px;
-            font-size: 1.2rem;
-            font-family: 'Cinzel', serif;
-            border-radius: 4px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+  /* ── tabs ──────────────────────────────────── */
+  .tab-btn{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;
+    padding:14px 10px 13px;border:1px solid var(--line);background:rgba(246,237,215,.6);
+    transition:all .28s cubic-bezier(.22,1,.36,1);cursor:pointer;overflow:hidden}
+  .tab-btn:hover{background:rgba(246,237,215,.95);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .tab-btn.active{background:var(--ink);color:#f1e6c8;border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .tab-btn.active .tab-era{color:#caa863}
+  .tab-btn .tab-icon{transition:transform .28s}
+  .tab-btn:hover .tab-icon{transform:translateY(-2px)}
+  .tab-btn.active::after{content:"";position:absolute;left:14px;right:14px;bottom:8px;height:1px;background:linear-gradient(90deg,transparent,#caa863,transparent)}
 
-        .tab-btn:hover, .tab-btn.active {
-            background: rgba(212, 175, 55, 0.15);
-            border-color: var(--gold);
-            box-shadow: var(--border-glow);
-            transform: translateY(-3px);
-        }
+  /* ── accordion ─────────────────────────────── */
+  .acc{border:1px solid var(--line);background:linear-gradient(180deg,rgba(247,240,222,.72),rgba(239,227,199,.72));
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset;transition:box-shadow .3s, border-color .3s, opacity .25s}
+  .acc + .acc{margin-top:-1px}
+  .acc:hover{border-color:#a9955f;position:relative;z-index:2}
+  .acc.open{position:relative;z-index:2;border-color:#a3823a;box-shadow:var(--shadow);background:linear-gradient(180deg,#f9f2de,#f1e6c9)}
+  .acc-head{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px 16px;
+    padding:15px 18px;text-align:left;cursor:pointer;position:relative}
+  .acc-num{font-family:'IM Fell English SC',serif;font-size:13px;color:var(--ink-faint);letter-spacing:.12em;min-width:52px}
+  .acc.open .acc-num{color:var(--red)}
+  .acc-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(16px,1.6vw,19px);line-height:1.25;color:var(--ink)}
+  .acc.open .acc-title{color:#3a2c14}
+  .acc-era{display:block;font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:2px}
+  .acc-chv{width:30px;height:30px;flex-shrink:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;
+    color:var(--ink-soft);transition:all .35s cubic-bezier(.22,1,.36,1)}
+  .acc:hover .acc-chv{border-color:var(--gold);color:var(--gold)}
+  .acc.open .acc-chv{transform:rotate(180deg);background:var(--red);border-color:var(--red);color:#f8ecd4}
+  .acc-head::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;background:linear-gradient(var(--red),var(--gold));
+    transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.22,1,.36,1);border-radius:0 2px 2px 0}
+  .acc.open .acc-head::before{transform:scaleY(1)}
+  .acc-body{height:0;overflow:hidden;transition:height .45s cubic-bezier(.22,1,.36,1)}
+  .acc-inner{padding:2px 22px 20px 86px}
+  @media (max-width:640px){.acc-inner{padding-left:22px}}
 
-        /* Main Layout */
-        .container {
-            display: flex;
-            max-width: 1400px;
-            margin: 40px auto;
-            gap: 40px;
-            padding: 0 20px;
-            align-items: flex-start;
-        }
+  .pts{list-style:none;padding:0;margin:0}
+  .pts li{position:relative;padding:7px 0 7px 22px;font-size:15.5px;line-height:1.66;color:#3b3122;border-bottom:1px dashed rgba(140,115,70,.25)}
+  .pts li:last-child{border-bottom:0}
+  .pts li::before{content:"";position:absolute;left:2px;top:15px;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:.9}
+  .pts b{color:var(--red-deep);font-weight:600}
 
-        .content-section {
-            flex: 1.6;
-        }
+  /* ── atlas plate (map panel) ───────────────── */
+  .plate{background:linear-gradient(180deg,#f8f1dc,#efe1c0);border:1px solid #a9955f;padding:14px;box-shadow:var(--shadow);position:relative}
+  .plate::before{content:"";position:absolute;inset:5px;border:1px solid rgba(143,110,50,.4);pointer-events:none}
+  .plate-corner{position:absolute;width:14px;height:14px;z-index:2}
+  .plate-corner::before{content:"";position:absolute;inset:0;border-color:var(--gold);border-style:solid;border-width:0}
+  .pc-tl{top:5px;left:5px}.pc-tl::before{border-top-width:2px;border-left-width:2px}
+  .pc-tr{top:5px;right:5px}.pc-tr::before{border-top-width:2px;border-right-width:2px}
+  .pc-bl{bottom:5px;left:5px}.pc-bl::before{border-bottom-width:2px;border-left-width:2px}
+  .pc-br{bottom:5px;right:5px}.pc-br::before{border-bottom-width:2px;border-right-width:2px}
+  .plate-top{display:flex;justify-content:space-between;align-items:baseline;padding:4px 8px 10px}
+  .plate-media{position:relative;border:1px solid rgba(143,110,50,.55);outline:1px solid rgba(255,251,238,.7);outline-offset:3px;
+    background:repeating-linear-gradient(45deg,#ecdfc2 0 10px,#e7d8b4 10px 20px);aspect-ratio:1/1;overflow:hidden}
+  .plate-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.38) contrast(1.04) saturate(.9) brightness(1.02);
+    opacity:0;transition:opacity .5s ease, transform 8s ease}
+  .plate-img.loaded{opacity:1;transform:scale(1.04)}
+  .plate-swap .plate-img,.plate-swap .plate-alt{opacity:0!important;transform:translateY(8px)}
+  .plate-alt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:18px;text-align:center;
+    transition:opacity .35s ease,transform .35s ease}
+  .plate-cap{padding:13px 8px 4px;text-align:center}
+  .plate-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 120% at 50% 45%,transparent 55%,rgba(72,52,20,.28));}
 
-        .period-content {
-            display: none;
-            animation: fadeIn 0.6s ease-in-out;
-        }
+  /* ── search ────────────────────────────────── */
+  .search-wrap{position:relative}
+  .search-wrap input{font-family:'Spectral',serif}
 
-        .period-content.active {
-            display: block;
-        }
+  /* ── manifest modal ────────────────────────── */
+  .modal-bg{background:rgba(29,21,10,.6);backdrop-filter:blur(3px)}
+  .manifest-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(140,115,70,.3)}
+  .manifest-row:last-child{border-bottom:0}
 
-        .period-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: var(--gold);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 10px;
-        }
+  .btn-ink{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#f1e6c8;padding:9px 16px;font-size:14px;
+    border:1px solid var(--ink);transition:all .25s;cursor:pointer}
+  .btn-ink:hover{background:var(--red);border-color:var(--red)}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);padding:9px 16px;font-size:14px;
+    border:1px solid var(--line);transition:all .25s;cursor:pointer}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-        /* Premium Accordion Design */
-        .accordion {
-            background: var(--dark-bg);
-            color: var(--gold-light);
-            cursor: pointer;
-            padding: 20px 25px;
-            width: 100%;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
+  .fade-swap{opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
+  .fade-swap.in{opacity:1;transform:none}
 
-        .accordion:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            background: rgba(30, 41, 59, 0.8);
-        }
-
-        .accordion.active {
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
-            border-left: 4px solid var(--gold);
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .accordion::after {
-            content: '\25BC'; /* Down Arrow */
-            font-size: 1rem;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-
-        .accordion.active::after {
-            transform: rotate(-180deg);
-        }
-
-        .panel {
-            padding: 0 25px;
-            background: var(--panel-bg);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-            border-radius: 0 0 8px 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-            border-top: none;
-            margin-bottom: 15px;
-            margin-top: -12px;
-        }
-
-        .panel-inner {
-            padding: 25px 0;
-        }
-
-        /* Exhaustive Content Styling */
-        .info-list {
-            list-style: none;
-            margin-bottom: 15px;
-        }
-        .info-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            font-family: 'Hind Siliguri', sans-serif;
-            font-size: 1.05rem;
-            color: #e2e8f0;
-        }
-        .info-list li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-            font-size: 1.1rem;
-        }
-        .highlight {
-            color: var(--gold-light);
-            font-weight: 700;
-        }
-        .lang-en {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-style: italic;
-            border-top: 1px dashed rgba(255,255,255,0.1);
-            padding-top: 10px;
-            margin-top: 10px;
-        }
-
-        /* Right Side: Map Display */
-        .map-section {
-            flex: 1;
-            background: var(--dark-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 30px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-        }
-
-        .map-section h3 {
-            font-family: 'Cinzel', serif;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-            color: var(--gold);
-            letter-spacing: 1px;
-        }
-
-        .map-container {
-            width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #000;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            position: relative;
-        }
-
-        #history-map {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: opacity 0.6s ease;
-            opacity: 0.8;
-        }
-        #history-map:hover {
-            opacity: 1;
-        }
-
-        #map-caption {
-            margin-top: 20px;
-            font-size: 1rem;
-            color: var(--gold-light);
-            font-weight: 400;
-            font-family: 'Hind Siliguri', sans-serif;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 1024px) {
-            .container { flex-direction: column; }
-            .map-section { position: relative; top: 0; width: 100%; }
-        }
-    </style>
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>The Great Indian History</h1>
-        <nav>
-            <button class="tab-btn active" onclick="openPeriod('ancient', 'Ancient India')">Ancient India</button>
-            <button class="tab-btn" onclick="openPeriod('medieval', 'Medieval India')">Medieval India</button>
-            <button class="tab-btn" onclick="openPeriod('modern', 'Modern India')">Modern India</button>
-        </nav>
-    </header>
+<!-- ══════════════ MASTHEAD ══════════════ -->
+<header class="pt-10 pb-6 px-5">
+  <div class="max-w-[1400px] mx-auto text-center">
+    <div class="flex justify-center mb-5">
+      <!-- chakra emblem -->
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="29" stroke="#a07c26" stroke-width="1.4" opacity=".9"/>
+        <circle cx="32" cy="32" r="24.5" stroke="#a07c26" stroke-width=".8" opacity=".6"/>
+        <circle cx="32" cy="32" r="4.2" stroke="#8f2f1e" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="1.4" fill="#8f2f1e"/>
+        <g stroke="#a07c26" stroke-width="1.2">
+          <line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(0 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(30 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(60 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(90 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(120 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(150 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(180 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(210 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(240 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(270 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(300 32 32)"/><line x1="32" y1="8.5" x2="32" y2="26" transform="rotate(330 32 32)"/>
+        </g>
+        <g fill="#a07c26">
+          <rect x="29.6" y="-.6" width="4.8" height="4.8" transform="rotate(45 32 1.8)"/>
+          <rect x="29.6" y="-.6" width="4.8" height="4.8" transform="rotate(135 32 62.2)"/>
+          <rect x="59.6" y="29.4" width="4.8" height="4.8" transform="rotate(45 62 31.8)"/>
+          <rect x="-.4" y="29.4" width="4.8" height="4.8" transform="rotate(45 2 31.8)"/>
+        </g>
+      </svg>
+    </div>
 
-    <main class="container">
-        
-        <!-- CONTENT SECTION -->
-        <section class="content-section">
-            
-            <!-- ANCIENT INDIA (Fully Exhaustive) -->
-            <div id="ancient" class="period-content active">
-                <h2 class="period-title">প্রাচীন ভারত (Ancient India)</h2>
+    <p class="kicker text-[11px] md:text-xs text-[var(--ink-faint)] mb-4">A Chronicle for Competitive Examinations · SSC · UPSC · State PCS</p>
+    <h1 class="font-display font-black leading-[0.98] text-[clamp(2.4rem,6.5vw,5.2rem)] tracking-[-.02em]">
+      The Indian History <em class="font-semibold" style="color:var(--red)">Explorer</em>
+    </h1>
+    <p class="font-serif-it italic text-[var(--ink-soft)] mt-4 text-base md:text-lg max-w-2xl mx-auto">
+      Thirty-four chapters spanning five thousand years — from the hammer-stones of Bhimbetka
+      to the midnight of freedom — each paired with its own atlas plate.
+    </p>
 
-                <button class="accordion" onclick="updateMap('Indus Valley Civilization')">সিন্ধু সভ্যতা | Indus Valley Civilization (2500 - 1750 BC)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">সময়কাল ও প্রকৃতি:</span> ২৫০০ - ১৭৫০ খ্রিঃ পূঃ (কার্বন-১৪ ডেটিং)। এটি ব্রোঞ্জ যুগের এবং একটি সম্পূর্ণ নগরকেন্দ্রিক (Urban) সভ্যতা ছিল।</li>
-                            <li><span class="highlight">প্রধান কেন্দ্র ও আবিষ্কারক:</span> হরপ্পা (দয়ারাম সাহানি, ১৯২১ - রাভী নদী), মহেঞ্জোদারো (রাখালদাস বন্দ্যোপাধ্যায়, ১৯২২ - সিন্ধু নদী), লোথাল (এস. আর. রাও - প্রাচীন বন্দর শহর), কালিবঙ্গান (এ. ঘোষ)।</li>
-                            <li><span class="highlight">নগর পরিকল্পনা:</span> গ্রিড প্যাটার্নে রাস্তা, পোড়া ইটের দোতলা বাড়ি, উন্নত ঢাকা পয়ঃপ্রণালী, মহেঞ্জোদারোর 'Great Bath' (বৃহৎ স্নানাগার) ও শস্যাগার।</li>
-                            <li><span class="highlight">সমাজ ও অর্থনীতি:</span> প্রধান জীবিকা কৃষিকাজ (গম ও বার্লি) ও ব্যবসা। মেসোপটেমিয়ার (সুমেরু) সাথে বাণিজ্যিক সম্পর্ক ছিল (তারা সিন্ধুকে 'মেলুহা' বলত)। লোহার ব্যবহার এদের অজানা ছিল।</li>
-                            <li><span class="highlight">ধর্ম ও লিপি:</span> পশুপতি শিব (Proto-Shiva), মাতৃদেবী এবং অশ্বত্থ গাছের উপাসনা। লিপি ছিল 'পিক্টোগ্রাফিক' (Pictographic - ছবি নির্ভর) এবং 'Boustrophedon' স্টাইলে লেখা, যা আজও পড়া যায়নি।</li>
-                        </ul>
-                        <p class="lang-en">Known for advanced urban planning, grid system, baked bricks, and drainage. Key sites: Harappa (Daya Ram Sahni), Mohenjo-Daro (R.D. Banerjee). Ignorant of iron. Worshipped Pashupati and Mother Goddess. Script remains undeciphered.</p>
-                    </div>
-                </div>
+    <div class="orn-rule max-w-xl mx-auto mt-7"><span class="orn-diamond"></span></div>
 
-                <button class="accordion" onclick="updateMap('Vedic Age')">বৈদিক যুগ | Vedic Period (1500 - 600 BC)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">আর্যদের আগমন:</span> ম্যাক্স মুলারের মতে আর্যরা মধ্য এশিয়া থেকে ভারতে আসে। এটি একটি সম্পূর্ণ গ্রামীণ (Rural) সভ্যতা।</li>
-                            <li><span class="highlight">ঋগ্বৈদিক যুগ (১৫০০-১০০০ BC):</span> সপ্তসিন্ধু অঞ্চলে বসবাস। সমাজে নারীদের সম্মান ছিল (গার্গী, মৈত্রেয়ী)। প্রধান দেবতা: ইন্দ্র (পুরন্দর), অগ্নি, বরুণ। বর্ণপ্রথা পেশার ওপর ভিত্তি করে ছিল। </li>
-                            <li><span class="highlight">পরবর্তী বৈদিক যুগ (১০০০-৬০০ BC):</span> গাঙ্গেয় উপত্যকায় বিস্তার। লোহার আবিষ্কার (Iron Age)। জন্মভিত্তিক কঠোর বর্ণপ্রথার (ব্রাহ্মণ, ক্ষত্রিয়, বৈশ্য, শূদ্র) এবং গোত্র প্রথার সৃষ্টি।</li>
-                            <li><span class="highlight">বেদ ও সাহিত্য:</span> ৪টি বেদ (ঋগ, সাম, যজু, অথর্ব)। মুন্ডক উপনিষদ থেকে ভারতের জাতীয় নীতিবাক্য 'সত্যমেব জয়তে' নেওয়া হয়েছে।</li>
-                        </ul>
-                        <p class="lang-en">Rural civilization founded by Aryans. Divided into Early (Rigvedic) and Later Vedic periods. Transition from pastoral to agricultural life. Discovery of iron. Rigid Varna system emerged in the later phase. 'Satyameva Jayate' taken from Mundaka Upanishad.</p>
-                    </div>
-                </div>
+    <!-- live stats -->
+    <div id="statStrip" class="flex flex-wrap justify-center gap-x-10 gap-y-3 mt-7 font-fell text-sm md:text-[15px] text-[var(--ink-soft)]"></div>
+  </div>
+</header>
 
-                <button class="accordion" onclick="updateMap('Magadha Empire')">মহাজনপদ ও মগধ সাম্রাজ্য | Rise of Magadha</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">ষোড়শ মহাজনপদ:</span> ৬ষ্ঠ শতকে ১৬টি বড় রাজ্যের উদ্ভব। এর মধ্যে মগধ, কোশল, বৎস এবং অবন্তী সবচেয়ে শক্তিশালী ছিল। মগধের রাজধানী ছিল রাজগৃহ (পরে পাটলিপুত্র)।</li>
-                            <li><span class="highlight">হর্যাঙ্ক বংশ:</span> বিম্বিসার (উপাধি: শ্রেণিক) প্রতিষ্ঠা করেন। অজাতশত্রু (উপাধি: কুনিক) পিতাকে হত্যা করে সিংহাসনে বসেন এবং প্রথম বৌদ্ধ সংগীতির আয়োজন করেন। উদয়িন পাটলিপুত্র নগরী স্থাপন করেন।</li>
-                            <li><span class="highlight">শিশুনাগ বংশ:</span> শিশুনাগ প্রতিষ্ঠা করেন। কালাশোক দ্বিতীয় বৌদ্ধ সংগীতির আয়োজন করেছিলেন।</li>
-                            <li><span class="highlight">নন্দ বংশ:</span> মহাপদ্ম নন্দ (উপাধি: একরাট/উগ্রসেন) প্রতিষ্ঠা করেন। শেষ রাজা ধননন্দের আমলে আলেকজান্ডার ভারত আক্রমণ করেন (৩২৬ BC)। ধননন্দকে হারিয়েই চন্দ্রগুপ্ত মৌর্য ক্ষমতায় আসেন।</li>
-                        </ul>
-                        <p class="lang-en">Rise of 16 Mahajanapadas. Magadha became supreme under Haryanka (Bimbisara, Ajatashatru), Shishunaga, and Nanda dynasties. Alexander invaded during the reign of Dhana Nanda (326 BC).</p>
-                    </div>
-                </div>
+<!-- ══════════════ TABS + SEARCH ══════════════ -->
+<section class="px-5 sticky top-0 z-50 py-3" style="background:linear-gradient(180deg,rgba(236,224,196,.94),rgba(236,224,196,.88));backdrop-filter:blur(6px);border-bottom:1px solid var(--line-soft)">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-3 gap-2 md:gap-3" id="tabBar"></div>
+</section>
 
-                <button class="accordion" onclick="updateMap('Mauryan Empire')">মৌর্য সাম্রাজ্য | Mauryan Empire (322 - 185 BC)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">চন্দ্রগুপ্ত মৌর্য (৩২২-২৯৮ BC):</span> চাণক্যের (কৌটিল্য) সহায়তায় নন্দ বংশের পতন ঘটিয়ে ভারতের প্রথম বিশাল সাম্রাজ্য স্থাপন করেন। গ্রিক বীর সেলুকাসকে পরাজিত করেন (৩০৫ BC)। সেলুকাসের দূত মেগাস্থিনিস ভারতে আসেন এবং 'ইন্ডিকা' রচনা করেন। শেষ জীবনে জৈন ধর্ম গ্রহণ করেন।</li>
-                            <li><span class="highlight">বিন্দুসার:</span> উপাধি ছিল 'অমিত্রাঘাত' (শত্রু ধ্বংসকারী)।</li>
-                            <li><span class="highlight">অশোক দ্য গ্রেট (২৬৮-২৩২ BC):</span> ২৬১ খ্রিঃ পূঃ-এ ভয়াবহ কলিঙ্গ যুদ্ধ হয় (১৩তম শিলালিপিতে উল্লেখ)। এরপর চণ্ডাশোক থেকে ধর্মাশোক হন এবং উপগুপ্তের কাছে বৌদ্ধ ধর্মে দীক্ষিত হন। তিনি 'ধম্ম' নীতি (অহিংসা ও নৈতিকতা) প্রচারের জন্য মহামাত্রদের নিয়োগ করেন। তাঁর উপাধি ছিল 'দেবানামপিয় পিয়দসী'।</li>
-                            <li><span class="highlight">প্রশাসন ও শিল্প:</span> চাণক্য রচিত 'অর্থশাস্ত্র' থেকে এদের সুদক্ষ কেন্দ্রীভূত প্রশাসন ও গুপ্তচর ব্যবস্থার কথা জানা যায়। অশোকের সাঁচি স্তূপ এবং সারনাথ স্তম্ভ (বর্তমানে ভারতের জাতীয় প্রতীক) বিখ্যাত।</li>
-                        </ul>
-                        <p class="lang-en">Founded by Chandragupta Maurya with Chanakya's help. Megasthenes wrote 'Indica'. Ashoka fought the Kalinga War (261 BC), embraced Buddhism, and propagated 'Dhamma'. Known for excellent administration detailed in 'Arthashastra' and rock edicts.</p>
-                    </div>
-                </div>
+<!-- ══════════════ MAIN ══════════════ -->
+<main class="max-w-[1400px] mx-auto px-5 pt-8 pb-20">
+  <div class="grid lg:grid-cols-[minmax(0,1fr)_400px] xl:grid-cols-[minmax(0,1fr)_440px] gap-8 items-start">
 
-                <button class="accordion" onclick="updateMap('Gupta Empire')">গুপ্ত সাম্রাজ্য | Gupta Empire (319 - 540 AD)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">প্রতিষ্ঠাতা:</span> শ্রীগুপ্ত প্রতিষ্ঠা করলেও প্রকৃত প্রতিষ্ঠাতা প্রথম চন্দ্রগুপ্ত (৩১৯ AD)। তিনি গুপ্তাব্দ চালু করেন।</li>
-                            <li><span class="highlight">সমুদ্রগুপ্ত (৩৩৫-৩৮০ AD):</span> তাঁর দিগ্বিজয়ের জন্য ঐতিহাসিক ভি. এ. স্মিথ তাঁকে 'ভারতের নেপোলিয়ন' বলেছেন। হরিষেণ রচিত 'এলাহাবাদ প্রশস্তি' থেকে তাঁর বীরত্বের কথা জানা যায়। মুদ্রায় তাঁকে বীণা বাদনরত অবস্থায় দেখা যায়।</li>
-                            <li><span class="highlight">দ্বিতীয় চন্দ্রগুপ্ত (৩৮০-৪১৫ AD):</span> শক রাজাদের পরাজিত করে 'শকারি' ও 'বিক্রমাদিত্য' উপাধি নেন। তাঁর রাজসভায় নবরত্নের (কালিদাস, ধন্বন্তরি, বরাহমিহির) সমাবেশ ছিল। চৈনিক পরিব্রাজক ফাহিয়েন তাঁর আমলে ভারতে আসেন।</li>
-                            <li><span class="highlight">সুবর্ণ যুগ (Golden Age):</span> আর্যভট্ট (শূন্যের ব্যবহার ও পৃথিবীর ঘূর্ণন), বরাহমিহির (বৃহৎসংহিতা), সুশ্রুত (শল্যচিকিৎসা) এবং কালিদাসের (অভিজ্ঞানশকুন্তলম) রচনার কারণে এটি প্রাচীন ভারতের স্বর্ণযুগ। অজন্তা ও ইলোরার গুহাচিত্র এই আমলের। প্রথম স্কন্দগুপ্ত হুন আক্রমণ প্রতিহত করেন।</li>
-                        </ul>
-                        <p class="lang-en">Considered the Golden Age of India for immense progress in art, science, and literature. Samudragupta is known as the 'Napoleon of India'. Chandragupta II (Vikramaditya) defeated the Shakas and hosted the 'Navaratnas'. Aryabhata and Kalidasa flourished here.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- ── Chronicle (accordions) ── -->
+    <div class="order-2 lg:order-1">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
+        <div>
+          <h2 id="eraTitle" class="font-display font-bold text-2xl md:text-3xl">{Era}</h2>
+          <p id="eraBlurb" class="font-serif-it italic text-[var(--ink-faint)] text-sm mt-1"></p>
+        </div>
+        <div class="search-wrap w-full sm:w-72">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--ink-faint)]"></i>
+          <input id="searchBox" type="text" placeholder="Search this era…"
+            class="w-full bg-[var(--paper-2)] border border-[--line] rounded-none pl-10 pr-16 py-2.5 text-sm outline-none focus:border-[#a9955f] placeholder:text-[var(--ink-faint)]">
+          <span id="searchCount" class="absolute right-3 top-1/2 -translate-y-1/2 font-mono2 text-[11px] text-[var(--ink-faint)]"></span>
+        </div>
+      </div>
 
-            <!-- MEDIEVAL INDIA -->
-            <div id="medieval" class="period-content">
-                <h2 class="period-title">মধ্যযুগীয় ভারত (Medieval India)</h2>
-                
-                <button class="accordion" onclick="updateMap('Delhi Sultanate')">দিল্লী সুলতানি যুগ | Delhi Sultanate (1206 - 1526 AD)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">দাস বংশ (১২০৬-১২৯০):</span> কুতুবউদ্দিন আইবক (উপাধি: লাক বক্স) প্রতিষ্ঠা করেন এবং কুতুব মিনারের কাজ শুরু করেন। প্রকৃত প্রতিষ্ঠাতা ইলতুৎমিশ (ইকতা প্রথা ও চালিশা বা ৪০ জন আমিরের দল গঠন করেন)। সুলতানা রাজিয়া ছিলেন দিল্লির একমাত্র মহিলা শাসক। গিয়াসুদ্দিন বলবন 'সিজদা ও পাইবস' প্রথা এবং 'রক্ত ও লৌহ' নীতি চালু করেন।</li>
-                            <li><span class="highlight">খলজী বংশ (১২৯০-১৩২০):</span> আলাউদ্দিন খলজী সবচেয়ে শক্তিশালী। তিনি প্রথম স্থায়ী সেনাবাহিনী রাখেন, দাগ ও হুলিয়া প্রথা চালু করেন এবং অত্যন্ত কঠোর বাজারদর নিয়ন্ত্রণ নীতি (Market Control Policy) প্রবর্তন করেন।</li>
-                            <li><span class="highlight">তুঘলক বংশ (১৩২০-১৪১৪):</span> মুহাম্মদ বিন তুঘলক (রাজধানী দিল্লি থেকে দেবগিরিতে স্থানান্তর, তামার মুদ্রার প্রচলন ইত্যাদি ব্যর্থ পরীক্ষার জন্য বিখ্যাত। ইবন বতুতা তাঁর আমলে আসেন)। ফিরোজ শাহ তুঘলক বহু সেচ খাল ও শহর নির্মাণ করেন।</li>
-                            <li><span class="highlight">লোদী বংশ (১৪৫১-১৫২৬):</span> সিকান্দার লোদী আগ্রা শহর স্থাপন করেন (১৫০৪)। শেষ শাসক ইব্রাহিম লোদী পানিপথের প্রথম যুদ্ধে (১৫২৬) বাবরের কাছে পরাজিত ও নিহত হন।</li>
-                        </ul>
-                        <p class="lang-en">Ruled by 5 dynasties: Slave (Qutbuddin Aibak, Iltutmish, Balban), Khalji (Alauddin's strict market control), Tughlaq (M.B. Tughlaq's visionary but failed experiments), Sayyid, and Lodi (ended with Ibrahim Lodi's defeat in 1526).</p>
-                    </div>
-                </div>
+      <div id="accList" class="fade-swap in"></div>
+      <div id="noResults" class="hidden text-center py-16 border border-dashed border-[--line]">
+        <i data-lucide="feather" class="w-8 h-8 mx-auto text-[var(--ink-faint)]"></i>
+        <p class="font-serif-it italic mt-3 text-[var(--ink-soft)]">No chapter matches your query in this era.<br>Try another era, or clear the search.</p>
+      </div>
+    </div>
 
-                <button class="accordion" onclick="updateMap('Mughal Empire')">মুঘল সাম্রাজ্য | Mughal Empire (1526 - 1857 AD)</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">বাবর ও হুমায়ুন:</span> ১৫২৬ সালে বাবর পানিপথের প্রথম যুদ্ধে কামান (Artillery) ব্যবহার করে ইব্রাহিম লোদীকে হারান। বাবরের আত্মজীবনী 'তুজুক-ই-বাবরি'। হুমায়ুন শের শাহের কাছে চৌসা (১৫৩৯) ও কনৌজের যুদ্ধে হেরে পালিয়ে যান, পরে ফিরে আসেন।</li>
-                            <li><span class="highlight">আকবর (১৫৫৬-১৬০৫):</span> পানিপথের দ্বিতীয় যুদ্ধে (১৫৫৬) হিমুকে হারান। হলদিঘাটির যুদ্ধে (১৫৭৬) মহারানা প্রতাপের সাথে সংগ্রাম। তিনি 'মনসবদারি প্রথা' (পদমর্যাদা), 'দ্বীন-ই-ইলাহী' নামক নতুন ধর্মমত এবং বৈষম্যমূলক জিজিয়া কর রদ করেন। তাঁর অর্থমন্ত্রী টোডরমল যবতি প্রথা চালু করেন।</li>
-                            <li><span class="highlight">জাহাঙ্গীর ও শাহজাহান:</span> জাহাঙ্গীরের আমলে চিত্রকলার চরম বিকাশ ঘটে। ক্যাপ্টেন হকিন্স ও টমাস রো ভারতে আসেন। শাহজাহানের আমলকে মুঘল স্থাপত্যের সুবর্ণ যুগ বলা হয় (তাজমহল, লালকেল্লা, জামা মসজিদ)।</li>
-                            <li><span class="highlight">আওরঙ্গজেব (১৬৫৮-১৭০৭):</span> উপাধি 'জিন্দাপীর'। কঠোর সুন্নি শাসক, পুনরায় জিজিয়া কর চাপান। নবম শিখ গুরু তেগ বাহাদুরকে হত্যা করেন। মারাঠা বীর শিবাজীর সাথে দীর্ঘ দ্বন্দ্ব এবং তাঁর ধ্বংসাত্মক দাক্ষিণাত্য নীতি মুঘল পতনের অন্যতম কারণ।</li>
-                        </ul>
-                        <p class="lang-en">Founded by Babur. Akbar is known for religious tolerance, Mansabdari system, and Din-i-Ilahi. Shah Jahan built the Taj Mahal (Golden Age of Architecture). Aurangzeb's rigid policies and Deccan campaigns led to the empire's decline.</p>
-                    </div>
-                </div>
-                
-                <!-- More Medieval Topics can be seamlessly added here following the exact same HTML pattern -->
-            </div>
+    <!-- ── Atlas plate ── -->
+    <aside class="order-1 lg:order-2 lg:sticky lg:top-24">
+      <div class="plate">
+        <span class="plate-corner pc-tl"></span><span class="plate-corner pc-tr"></span>
+        <span class="plate-corner pc-bl"></span><span class="plate-corner pc-br"></span>
 
-            <!-- MODERN INDIA -->
-            <div id="modern" class="period-content">
-                <h2 class="period-title">আধুনিক ভারত (Modern India)</h2>
-                
-                <button class="accordion" onclick="updateMap('Revolt of 1857')">১৮৫৭ সালের মহাবিদ্রোহ | The Revolt of 1857</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">কারণ:</span> লর্ড ডালহৌসির স্বত্ববিলোপ নীতি (Doctrine of Lapse), অর্থনৈতিক শোষণ এবং প্রত্যক্ষ কারণ হিসেবে এনফিল্ড রাইফেলের কার্তুজে গরু ও শুকরের চর্বি ব্যবহারের গুজব।</li>
-                            <li><span class="highlight">সূচনা ও বিস্তার:</span> ২৯ মার্চ ব্যারাকপুরে মঙ্গল পাণ্ডে প্রথম বিদ্রোহ করেন। ১০ই মে মিরাট থেকে সিপাহীদের মূল বিদ্রোহ শুরু হয়। তারা দিল্লির শেষ মুঘল সম্রাট দ্বিতীয় বাহাদুর শাহকে ভারতের সম্রাট ঘোষণা করে।</li>
-                            <li><span class="highlight">প্রধান কেন্দ্র ও নেতা:</span> কানপুর (নানা সাহেব ও তাঁতিয়া তোপী), লক্ষ্ণৌ (বেগম হযরত মহল), ঝাঁসি (রানি লক্ষ্মীবাই, স্যার হিউরোজের বিরুদ্ধে যুদ্ধ), বিহার (কুনওয়ার সিং)।</li>
-                            <li><span class="highlight">ফলাফল:</span> বিদ্রোহ চরমভাবে দমন করা হয়। ১৮৫৮ সালের ভারত শাসন আইন দ্বারা ইস্ট ইন্ডিয়া কোম্পানির শাসনের অবসান ঘটে এবং ভারতের শাসনভার সরাসরি ব্রিটিশ রানির (Crown) হাতে চলে যায়। লর্ড ক্যানিং হন ভারতের প্রথম ভাইসরয়। ভি.ডি. সাভারকর একে 'ভারতের প্রথম স্বাধীনতা যুদ্ধ' বলেছেন।</li>
-                        </ul>
-                        <p class="lang-en">Triggered by Enfield rifle cartridges. Major leaders: Mangal Pandey, Rani Lakshmibai, Nana Saheb. Resulted in the end of East India Company rule; India came under the direct control of the British Crown (Government of India Act 1858).</p>
-                    </div>
-                </div>
+        <div class="plate-top">
+          <span class="font-fell text-[13px] tracking-[.18em] text-[var(--ink-soft)]">ATLAS OF EMPIRES</span>
+          <span id="plateNum" class="font-mono2 text-[11px] text-[var(--ink-faint)]">PLATE —</span>
+        </div>
 
-                <button class="accordion" onclick="updateMap('Indian National Congress & Movements')">কংগ্রেস ও স্বাধীনতা সংগ্রাম | INC & Freedom Struggle</button>
-                <div class="panel">
-                    <div class="panel-inner">
-                        <ul class="info-list">
-                            <li><span class="highlight">কংগ্রেস প্রতিষ্ঠা (১৮৮৫):</span> অ্যালান অক্টাভিয়ান হিউমের উদ্যোগে। প্রথম অধিবেশন বোম্বেতে (উমেশচন্দ্র বন্দ্যোপাধ্যায় সভাপতি)। </li>
-                            <li><span class="highlight">বঙ্গভঙ্গ ও স্বদেশী (১৯০৫):</span> লর্ড কার্জন বাংলা ভাগ করেন। এর প্রতিবাদে বিদেশী দ্রব্য বয়কট এবং স্বদেশী আন্দোলন শুরু হয়। চরমপন্থী নেতা লাল-বাল-পাল (লালা লাজপত রায়, বাল গঙ্গাধর তিলক, বিপিন চন্দ্র পাল) জনপ্রিয় হন। ১৯০৭ সালের সুরাট অধিবেশনে কংগ্রেস ভাগ হয়।</li>
-                            <li><span class="highlight">গান্ধীজীর আন্দোলন:</span> ১৯১৫ সালে ভারতে ফেরেন। ১৯১৭ সালের চম্পারণ সত্যাগ্রহ ছিল তাঁর প্রথম আন্দোলন। এরপর অসহযোগ আন্দোলন (১৯২০ - চৌরিচৌরা ঘটনার জন্য প্রত্যাহার), আইন অমান্য আন্দোলন (১৯৩০ - ডান্ডি অভিযান দিয়ে শুরু) এবং ভারত ছাড়ো আন্দোলন (১৯৪২ - 'ডু অর ডাই' স্লোগান)।</li>
-                            <li><span class="highlight">বিপ্লবী ও INA:</span> ১৯৩১ সালে ভগত সিং, রাজগুরু ও সুখদেবের ফাঁসি। ১৯৪৩ সালে সুভাষচন্দ্র বসু সিঙ্গাপুরে আজাদ হিন্দ ফৌজের (INA) দায়িত্ব নেন এবং 'দিল্লী চলো' ডাক দেন। ১৯৪৬ সালের নৌ-বিদ্রোহ ব্রিটিশদের ভীত করে তোলে।</li>
-                        </ul>
-                        <p class="lang-en">INC founded in 1885. Key phases: Swadeshi movement against Bengal Partition (1905), the split into Moderates and Extremists (1907). Gandhian mass movements (Non-Cooperation, Civil Disobedience, Quit India). Armed struggles by revolutionaries and Subhas Chandra Bose's INA significantly hastened independence.</p>
-                    </div>
-                </div>
-            </div>
+        <div id="plateMedia" class="plate-media">
+          <img id="plateImg" class="plate-img" alt="Historical map plate">
+          <div id="plateAlt" class="plate-alt"><!-- rendered by JS --></div>
+        </div>
 
-        </section>
+        <div class="plate-cap">
+          <p id="capTitle" class="font-display font-bold italic text-lg leading-tight">The Chronicle Awaits</p>
+          <p id="capEra" class="font-fell text-[13px] mt-1 text-[var(--ink-soft)]">Select a chapter to consult its plate</p>
+          <div class="orn-rule mt-3"><span class="orn-diamond"></span></div>
+          <p class="font-mono2 text-[10.5px] text-[var(--ink-faint)] mt-2.5">maps/&lt;chapter&gt;.jpg — plates update as you explore</p>
+        </div>
+      </div>
 
-        <!-- MAP SECTION -->
-        <aside class="map-section">
-            <h3 id="map-title">HISTORICAL MAPS</h3>
-            <div class="map-container">
-                <img id="history-map" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop" alt="Historical Map">
-            </div>
-            <p id="map-caption">ম্যাপ এবং বিস্তারিত তথ্য দেখতে বামদিকের টপিকগুলোতে ক্লিক করুন</p>
-        </aside>
+      <p class="font-serif-it italic text-[13px] text-[var(--ink-faint)] mt-4 leading-relaxed">
+        Plates are loaded live from the local <span class="font-mono2 not-italic text-[12px]">maps/</span> folder.
+        Until your AI-generated vintage map is placed there, each frame displays the
+        <span class="font-mono2 not-italic text-[12px]">exact filename</span> it expects.
+      </p>
+    </aside>
+  </div>
+</main>
 
-    </main>
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="border-t border-[--line] px-5 py-10">
+  <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-display font-bold text-lg">The Indian History Explorer</p>
+      <p class="font-serif-it italic text-sm text-[var(--ink-faint)] mt-1">Compiled in the service of aspirants — facts cross-checked against standard references (RS Sharma, Satish Chandra, Bipan Chandra, Spectrum).</p>
+      <p class="font-serif-it italic text-[13px] text-[var(--ink-faint)] mt-2">Deploy on GitHub Pages: keep <span class="font-mono2 not-italic text-[12px]">index.html</span> at repo root with the <span class="font-mono2 not-italic text-[12px]">maps/</span> folder beside it.</p>
+    </div>
+    <button id="manifestBtn" class="btn-ink shrink-0"><i data-lucide="map" class="w-4 h-4"></i> Map Manifest</button>
+  </div>
+</footer>
 
-    <script>
-        function openPeriod(periodId, periodName) {
-            document.querySelectorAll('.period-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(periodId).classList.add('active');
-            event.currentTarget.classList.add('active');
+<!-- ══════════════ MAP MANIFEST MODAL ══════════════ -->
+<div id="manifestModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-5">
+  <div class="absolute inset-0 modal-bg" data-close></div>
+  <div class="relative plate max-w-lg w-full max-h-[82vh] flex flex-col">
+    <div class="plate-top">
+      <span class="font-fell text-[13px] tracking-[.18em] text-[var(--ink-soft)]">MAP MANIFEST</span>
+      <button class="btn-ghost !p-1.5" data-close><i data-lucide="x" class="w-4 h-4"></i></button>
+    </div>
+    <div class="px-3 pb-2 overflow-y-auto" id="manifestList"></div>
+    <div class="p-3 border-t border-[--line-soft] flex justify-between items-center gap-3">
+      <span id="manifestCount" class="font-mono2 text-[11px] text-[var(--ink-faint)]"></span>
+      <button id="copyManifest" class="btn-ghost"><i data-lucide="copy" class="w-4 h-4"></i> <span>Copy all filenames</span></button>
+    </div>
+  </div>
+</div>
 
-            document.getElementById('map-title').innerText = periodName + " Map";
-            document.getElementById('map-caption').innerText = "ম্যাপ দেখতে টপিকগুলোতে ক্লিক করুন";
-            
-            document.querySelectorAll('.accordion').forEach(acc => {
-                acc.classList.remove('active');
-                acc.nextElementSibling.style.maxHeight = null;
-            });
-        }
+<script>
+/* ══════════════════════════════════════════════════════════════
+   DATA — 34 chapters of exam-ready Indian History
+   Map convention: maps/<id>.jpg  (AI-generated vintage plates)
+   ══════════════════════════════════════════════════════════════ */
+const TABS = {
+  anc: {
+    label:"Ancient India", roman:"I", icon:"feather",
+    range:"c. 500,000 BCE – 1279 CE",
+    blurb:"From the stone-tool makers of Bhimbetka to the temple-fleets of the Cholas.",
+    topics:[
+      {
+        id:"anc-prehistoric", t:"Prehistoric & Chalcolithic Ages", era:"c. 500,000 – 2,000 BCE",
+        pts:[
+          "<b>Palaeolithic</b> (500,000–10,000 BCE): hunter-gatherers, quartzite tools, discovery of fire — key sites: <b>Bhimbetka</b> rock shelters (MP), Hunsgi & Kurnool caves.",
+          "<b>Mesolithic</b> (10,000–6,000 BCE): microliths; first animal domestication — sites: Bagor (Rajasthan), Adamgarh (MP).",
+          "<b>Neolithic</b> (6,000–2,000 BCE): settled agriculture & wheel — <b>Mehrgarh</b> (Balochistan, earliest farming site), Burzahom (Kashmir, pit dwellings), Chirand (Bihar).",
+          "<b>Chalcolithic</b> (c. 2,000–700 BCE): <b>copper — the first metal used by man</b>; cultures were rural and non-urban.",
+          "Major cultures: <b>Ahar & Banas</b> (Rajasthan), <b>Kayatha & Malwa</b> (MP), <b>Jorwe</b> (Maharashtra — largest), <b>OCP</b> (Ganga doab).",
+          "Pottery sequence for exams: OCP → <b>PGW (Painted Grey Ware, Later Vedic)</b> → NBPW (Northern Black Polished Ware, age of the Buddha)."
+        ]
+      },
+      {
+        id:"anc-indus", t:"Indus Valley Civilization", era:"c. 2600 – 1900 BCE (Mature Phase)",
+        pts:[
+          "Bronze Age civilization discovered under <b>Sir John Marshall</b>: <b>Harappa (1921 — Daya Ram Sahni)</b> on the Ravi; <b>Mohenjo-daro (1922 — R.D. Banerjee)</b>, “Mound of the Dead”.",
+          "Town planning: <b>grid pattern, burnt bricks, covered drains</b> (world’s first); citadel on the west, lower town on the east; <b>Great Bath & Great Granary at Mohenjo-daro</b>.",
+          "Key sites: <b>Lothal</b> (tidal dockyard), <b>Kalibangan</b> (furrowed ploughed field, fire altars), <b>Dholavira</b> (three-part citadel, reservoirs), Chanhudaro (bead factory).",
+          "Economy: wheat & barley staples; <b>world’s first cotton cultivation</b> (called <i>sindon</i> by the Greeks); barter trade with Mesopotamia — seals found at Ur; no coins; weights in multiples of 16.",
+          "Religion: <b>Pashupati seal</b> (proto-Shiva in yogic posture), mother-goddess figurines, peepal & animal worship — <b>unicorn the commonest seal motif</b>; no temples found.",
+          "Script: <b>pictographic, boustrophedon — still undeciphered</b>; the people used bronze but not iron.",
+          "Decline: c. 1900 BCE — climate-driven drying of the <b>Ghaggar–Hakra</b> system and floods; Wheelers’ “Aryan invasion” theory is now rejected."
+        ]
+      },
+      {
+        id:"anc-vedic", t:"The Vedic Age", era:"c. 1500 – 600 BCE",
+        pts:[
+          "Aryans composed the <b>Vedas (“knowledge”)</b> — the earliest literary source of Indian history; transmitted orally (shruti).",
+          "<b>Early Vedic</b> (1500–1000 BCE): pastoral society of the <b>Sapta Sindhu</b>; tribal bodies <b>Sabha & Samiti</b>; Rajan not absolute.",
+          "<b>Rig Veda</b>: oldest text — 1,028 hymns in 10 mandalas; <b>Gayatri Mantra</b> (3rd mandala, Vishvamitra — to Savitri); <b>Purusha Sukta</b> (10th mandala) first mentions the four varnas.",
+          "<b>Battle of Ten Kings (Dasarajna)</b> on the Parushni (Ravi) — Sudas of the Bharatas was victorious; Bharatas’ priest Vasishtha.",
+          "<b>Later Vedic</b> (1000–600 BCE): shift into the Ganga plain; <b>Samaveda</b> (roots of music), <b>Yajurveda</b> (rituals), <b>Atharvaveda</b> (charms, medicine — linked to Ayurveda); Painted Grey Ware culture.",
+          "Society hardened: varna by birth, women’s status declined, sacrifices grew elaborate — the Upanishadic reaction followed.",
+          "<b>Upanishads</b> (108; Vedanta — “end of the Vedas”): atman–brahman philosophy; <b>“Satyameva Jayate”</b> is from the Mundaka Upanishad; six Vedangas include Jyotisha (astronomy)."
+        ]
+      },
+      {
+        id:"anc-mahajanapadas", t:"Mahajanapadas & the Rise of Magadha", era:"6th – 4th century BCE",
+        pts:[
+          "<b>16 Mahajanapadas</b> listed in the Buddhist Anguttara Nikaya; leading ones: <b>Magadha, Kosala, Vatsa, Avanti</b>; plus Gandhara & Kamboja in the far north-west.",
+          "Republics (gana-sanghas): <b>Lichchhavis of Vaishali</b> (world’s earliest republic), Sakyas of Kapilavastu, Mallas of Kushinagar.",
+          "Magadha’s edge: iron mines and timber of Rajagriha hills, elephants, fertile Ganga soil, river trade — capitals <b>Rajagriha → Pataliputra</b>.",
+          "<b>Haryanka dynasty</b>: Bimbisara (contemporary of Buddha, married Kosala & Lichchhavi princesses); <b>Ajatashatru</b> (fortified Pataliputra, sacked Vaishali, patron of the 1st Buddhist Council); Udayin (founded Pataliputra).",
+          "<b>Shishunaga</b> destroyed Avanti; <b>Nandas</b>: Mahapadma Nanda — first great empire-builder of the north; Dhana Nanda ruled when Alexander entered India.",
+          "<b>Alexander’s invasion, 326 BCE</b>: defeated Porus at the <b>Battle of Hydaspes (Jhelum)</b>; his army mutinied at the Hyphasis (Beas); opened the way for Mauryan unification."
+        ]
+      },
+      {
+        id:"anc-buddhism", t:"Buddhism & Jainism", era:"6th century BCE onwards",
+        pts:[
+          "Both arose against Later Vedic ritualism & varna rigidity, preaching in the people’s tongues — <b>Pali & Prakrit</b>.",
+          "<b>Buddha (563–483 BCE)</b>: born at Lumbini; the Great Departure (Mahabhiniskramana); enlightenment (nirvana) under the peepal tree at <b>Bodh Gaya</b>; first sermon at <b>Sarnath</b> (Dharmachakra Pravartana); died at <b>Kushinagar</b> (Mahaparinirvana).",
+          "Core doctrine: <b>Four Noble Truths & Eightfold Path</b>; texts = Tripitakas (Vinaya, Sutta, Abhidhamma); Jatakas describe Buddha’s past lives.",
+          "<b>Four Buddhist Councils</b>: ① Rajgriha (483 BCE — Ajatashatru) ② Vaishali (383 BCE — Kalasoka; first split) ③ Pataliputra (250 BCE — Ashoka; Mogaliputta Tissa) ④ Kundalvana, Kashmir (72 CE — <b>Kanishka</b>; final split into <b>Hinayana & Mahayana</b>).",
+          "<b>Mahavira (540–468 BCE)</b>: 24th & last Tirthankara, born at Kundagrama (Vaishali); kevala on the Rijupalika river; died at <b>Pawapuri</b> (aged 72).",
+          "Jain <b>Triratnas</b>: Right faith, knowledge, conduct; ahimsa para-mount; canon = Agamas in Ardha-Magadhi; schism: <b>Svetambara (Sthulabhadra) / Digambara (Bhadrabahu)</b>.",
+          "<b>Chandragupta Maurya</b> became a Jain and migrated to <b>Sravanabelagola</b> (Karnataka) with Bhadrabahu, ending his life by sallekhana."
+        ]
+      },
+      {
+        id:"anc-mauryan", t:"The Mauryan Empire", era:"322 – 185 BCE",
+        pts:[
+          "<b>Chandragupta</b> (322–298 BCE) destroyed the Nandas guided by <b>Chanakya (Kautilya — Arthashastra)</b>; Treaty of 305 BCE with Seleucus Nicator — won the far north-west for 500 elephants; ambassador <b>Megasthenes wrote Indica</b>.",
+          "<b>Bindusara</b> (298–273 BCE), styled Amitraghata; received envoys Deimachus (Syria) and Dionysius (Egypt).",
+          "<b>Ashoka</b> (c. 268–232 BCE): <b>Kalinga War, 261 BCE</b> (Major Rock Edict XIII) — the slaughter made him renounce dig-vijaya for <b>Dhamma-vijaya</b>; Buddhism spread by missionaries — son Mahendra & daughter Sanghamitra to Sri Lanka.",
+          "Dhamma = moral welfare code of a paternal king: tolerance, ahimsa, respect to parents & teachers; <b>Dhamma-mahamatras</b> appointed to enforce it.",
+          "Edicts deciphered by <b>James Prinsep, 1837</b>; scripts: <b>Brahmi</b> (most), Kharoshthi, Greek & Aramaic (north-west); Ashoka styles himself “Devanampiya Piyadasi”.",
+          "Administration: provinces headed by princes — <b>Taxila, Ujjain, Tosali, Suvarnagiri</b>; army of 6 lakh infantry, 30,000 cavalry, 9,000 elephants (Pliny).",
+          "Last king <b>Brihadratha</b> assassinated 185 BCE by <b>Pushyamitra Shunga</b>. Legacy: <b>Sarnath Lion Capital = national emblem; Ashoka Chakra in our flag.</b>"
+        ]
+      },
+      {
+        id:"anc-postmauryan", t:"Post-Mauryan Powers: Shungas, Satavahanas, Kushanas", era:"185 BCE – 300 CE",
+        pts:[
+          "<b>Shungas</b> (185–73 BCE): Pushyamitra revived the ashvamedha; grammarian <b>Patanjali (Mahabhashya)</b> at his court; Heliodorus of Taxila erected the <b>Besnagar Garuda pillar</b> — first recorded foreign devotee of Vaishnavism.",
+          "<b>Satavahanas</b> (Deccan): capital Pratishthana (Paithan); greatest ruler <b>Gautamiputra Satakarni</b> — “destroyer of the Shakas”; Prakrit <b>Gathasaptashati</b> of Hala; first to give <b>land grants to Brahmanas & Buddhist monks</b>.",
+          "<b>Indo-Greeks</b>: Menander (Milinda) converted by monk Nagasena — dialogue preserved as the <b>Milindapanho</b>; first rulers to issue portrait coins with legends.",
+          "<b>Shakas</b>: <b>Rudradaman I</b> — greatest western Kshatrapa; his <b>Junagadh inscription (150 CE)</b> is the first long epigraph in classical Sanskrit (records repair of the Sudarshana lake first built under Chandragupta Maurya).",
+          "<b>Kushanas</b>: Yuezhi origin; greatest king <b>Kanishka (r. 78 CE — founded the Saka Era)</b>, capital Purushapura (Peshawar); convened the 4th Buddhist Council.",
+          "Kanishka’s court: <b>Ashvaghosha (Buddhacharita)</b>, Nagarjuna (Madhyamika), Charaka (aynedic classic) & Sushruta (surgery).",
+          "Two art schools: <b>Gandhara (Graeco-Buddhist)</b> & <b>Mathura (indigenous red sandstone)</b>; Roman gold drained east along the Silk Route."
+        ]
+      },
+      {
+        id:"anc-gupta", t:"The Gupta Empire — The Golden Age", era:"319 – ~550 CE",
+        pts:[
+          "<b>Chandragupta I</b> (r. 319 CE — founded the <b>Gupta Era</b>) rose by marrying the Licchhavi princess Kumaradevi; first to assume <b>Maharajadhiraja</b>.",
+          "<b>Samudragupta</b> (c. 335–375): “Napoleon of India” (V.A. Smith); his campaigns listed in the <b>Allahabad Pillar Inscription (Prayaga Prashasti) of Harisena</b> — northern kings annexed, southern kings conquered-and-released; veena-type gold coins.",
+          "<b>Chandragupta II ‘Vikramaditya’</b> (375–415) destroyed the western Shakas; <b>Mehrauli iron pillar</b> of king “Chandra”; wed daughter Prabhavatigupta into the Vakatakas; <b>Fa-Hien visited (405–411 CE)</b> and praised the mild administration.",
+          "Navaratnas adorned court of Chandragupta II; among them <b>Kalidasa</b> (Abhijnanashakuntalam, Meghaduta, Raghuvamsa) — “Shakespeare of India”.",
+          "Science: <b>Aryabhatta</b> (place value of zero, π ≈ 3.1416, earth’s rotation); Varahamihira (Brihat Samhita); Sushruta — father of surgery; <b>rust-free iron metallurgy</b>.",
+          "<b>Kumaragupta I</b> founded <b>Nalanda</b> as a royal institution; <b>Skandagupta</b> repulsed the first Huna invasion; decline followed as gold coinage was debased.",
+          "Art: Ajanta murals (under allied Vakataka rule), Sarnath Buddhas, <b>Dasavatara Temple, Deogarh</b> — first structural Gupta temple style."
+        ]
+      },
+      {
+        id:"anc-harsha", t:"Harshavardhana & the Post-Gupta North", era:"606 – 647 CE",
+        pts:[
+          "<b>Harsha</b> of the Pushyabhuti dynasty of Thanesar succeeded his brother Rajyavardhana (slain by Sasanka of Gauda) and shifted the capital to <b>Kannauj</b>.",
+          "Empire stretched Punjab to Bengal’s frontier — styled <b>Sakalottarapathanatha</b>; but the Narmada checked him — defeated by <b>Pulakeshin II</b> of the Chalukyas.",
+          "Chief sources: <b>Hiuen Tsang’s Si-Yu-Ki</b> (visited 630–644 CE) and court poet <b>Bana’s Harshacharita & Kadambari</b>.",
+          "Harsha himself wrote three plays: <b>Ratnavali, Priyadarshika, Nagananda</b>; held the great assemblies of Kannauj (643) and Prayag.",
+          "A liberal Buddhist, he endowed <b>Nalanda University</b> and charity houses, yet donated to all sects — the Kannauj assembly honoured Hiuen Tsang.",
+          "His death heirless (647) left the north leaderless — Kannauj became the prize of the coming <b>Tripartite Struggle</b>."
+        ]
+      },
+      {
+        id:"anc-tripartite", t:"Tripartite Struggle: Palas, Pratiharas, Rashtrakutas", era:"8th – 10th century CE",
+        pts:[
+          "A three-cornered contest for <b>imperial Kannauj</b>, symbol of northern supremacy, lasting two centuries.",
+          "<b>Palas</b> (Bengal–Bihar): founder <b>Gopala</b> — elected to end anarchy (matsyanyaya); <b>Dharmapala</b> founded Vikramashila & revived Nalanda; <b>Devapala</b> greatest (Badal pillar inscription); patrons of Mahayana/Tantric Buddhism.",
+          "<b>Gurjara-Pratiharas</b> (Malwa → Kannauj): <b>Nagabhata I</b> repelled the Arabs of Sindh; <b>Mihira Bhoja</b> (greatest) ruled Kannauj; claimed descent from Lakshmana — “pratihara”, the doorkeeper.",
+          "<b>Rashtrakutas</b> (Deccan): <b>Dantidurga</b> overthrew the Chalukyas; <b>Krishna I carved the monolithic Kailasa temple, Ellora</b>; <b>Amoghavarsha</b> wrote <b>Kavirajamarga</b> — first Kannada work; capital Manyakheta.",
+          "Rashtrakuta north-marches repeatedly seized Kannauj from both rivals; overextension exhausted all three dynasties.",
+          "Result: by the 10th century north India lay fragmented — a vacuum the Ghurids would stride into two centuries later."
+        ]
+      },
+      {
+        id:"anc-sangam", t:"The Sangam Age: Cheras, Cholas, Pandyas", era:"c. 300 BCE – 300 CE",
+        pts:[
+          "Sangam = assemblies of Tamil poets held under <b>Pandyan</b> patronage at Madurai; the corpus: <b>Tolkappiyam (grammar), Ettutokai (eight anthologies), Pattupattu (ten idylls)</b>.",
+          "Twin epics: <b>Silappadikaram</b> (Ilango Adigal — the saga of Kannagi, “first Tamil epic”) and <b>Manimekalai</b> (Sattanar — Buddhist theme).",
+          "<b>Cholas</b> (tiger emblem): capital Uraiyur, port Kaveripattanam; <b>Karikala</b> won the battle of Venni and built the <b>Kallanai (Grand Anicut) on the Kaveri</b> — still in service.",
+          "<b>Cheras</b> (bow emblem): capital Vanji; greatest king <b>Senguttuvan</b> — founded the Pattini cult deifying Kannagi.",
+          "<b>Pandyas</b> (fish emblem): capital Madurai; pearls of Korkai; the land of the <b>Muvendar</b> — the “three crowned kings”.",
+          "Economy: thriving Indo-Roman trade via <b>Muziris</b>; the <b>Periplus of the Erythraean Sea</b> (1st c. CE) and Pliny’s lament over Rome’s gold drain prove it.",
+          "Society: five tinai eco-zones (Kurinji, Mullai, Marutam, Neital, Palai); war (puram) and love (akam) verse; poetesses like <b>Avvaiyar</b> flourished."
+        ]
+      },
+      {
+        id:"anc-cholas", t:"The Imperial Cholas", era:"850 – 1279 CE",
+        pts:[
+          "<b>Vijayalaya</b> (c. 850) seized Thanjavur from the Muttaraiyars; Parantaka I took the title <b>Madurai-konda</b> but fell at Takkolam (949) to the Rashtrakutas.",
+          "<b>Rajaraja I</b> (985–1014): annexed northern Sri Lanka & the Maldives; systematised land survey & revenue; built the <b>Brihadeeswara (Rajarajeshwara) Temple, Thanjavur (1010)</b>.",
+          "<b>Rajendra I</b> (1012–1044): carried arms to the Ganga — title <b>Gangaikonda</b>; new capital <b>Gangaikonda Cholapuram</b>; led Indian history’s first great overseas naval expedition against <b>Sri Vijaya (Sumatra)</b>, c. 1025.",
+          "Kulottunga I fused Chola & Eastern Chalukya lines (Vengi matrimony); styled <b>Sungam-tavirtta</b> — “he who abolished tolls”.",
+          "<b>Local self-government (exam gold)</b>: Uttaramerur inscriptions of Parantaka I record election by the <b>kudavolai</b> (pot-ticket) system to committees (variyams); assemblies — <b>sabha</b> (Brahmana villages) & <b>ur</b> (cultivators’ villages).",
+          "Merchant guilds <b>Ainurruvar (Ayyavole 500) & Manigramam</b> drove trade; bronze <b>Nataraja</b> castings by the lost-wax process remain unrivalled.",
+          "Decline: by the mid-13th century resurgent Pandyas of Madurai eclipsed the Chola state."
+        ]
+      },
+      {
+        id:"anc-pallavas", t:"Pallavas & Chalukyas: Peninsular Powers", era:"6th – 9th century CE",
+        pts:[
+          "<b>Pallavas of Kanchipuram</b>: <b>Narasimhavarman I ‘Mamalla’ (630–668)</b> sacked Vatapi (title Vatapi-konda) — built the <b>rock-cut Rathas & great relief at Mahabalipuram</b>.",
+          "<b>Narasimhavarman II ‘Rajasimha’</b> raised the structural <b>Shore Temple (Mahabalipuram)</b> & Kailasanatha Temple (Kanchi).",
+          "<b>Chalukyas of Badami (Vatapi)</b>: Pulakeshin I performed ashvamedha; <b>Pulakeshin II (609–642)</b> — the <b>Aihole inscription of Ravikirti</b> records his defeat of Harsha; Hiuen Tsang visited his court.",
+          "Pallava–Chalukya duel drained both; the Chalukyas were finally supplanted by the <b>Rashtrakutas (753)</b>.",
+          "Architecture: temple styles of <b>Aihole (Durga temple)</b> & <b>Pattadakal</b> (Virupaksha, built by queen of Vikramaditya II) — UNESCO heritage.",
+          "Culture: Kanchi’s Ghatika a famed university; <b>Bharavi (Kiratarjuniyam)</b> & <b>Dandin (Dashakumaracharita)</b>; Pallava script seeded the scripts of Southeast Asia."
+        ]
+      }
+    ]
+  },
 
-        document.querySelectorAll('.accordion').forEach(acc => {
-            acc.addEventListener('click', function() {
-                const siblings = this.parentElement.querySelectorAll('.accordion');
-                siblings.forEach(sibling => {
-                    if (sibling !== this) {
-                        sibling.classList.remove('active');
-                        sibling.nextElementSibling.style.maxHeight = null;
-                    }
-                });
+  med: {
+    label:"Medieval India", roman:"II", icon:"castle",
+    range:"712 – 1849 CE",
+    blurb:"From the horse-hooves of Sindh to the saffron throne of the Marathas.",
+    topics:[
+      {
+        id:"med-invasions", t:"Arab, Ghaznavid & Ghurid Invasions", era:"712 – 1206 CE",
+        pts:[
+          "<b>712 CE</b>: <b>Muhammad bin Qasim</b> conquered Sindh, slaying King Dahir at Rohri; Sindh entered the Umayyad Caliphate; Indian science flowed to Baghdad — the <b>Charaka Samhita</b> and Brahmasphutasiddhanta (“Sindhind”) were translated.",
+          "<b>Mahmud of Ghazni</b> raided India <b>17 times (1000–1027)</b> for plunder — Kangra, Mathura, Kalinjar, and <b>Somnath (1025)</b>; first to style himself “Sultan”; his court held <b>Firdausi (Shahnama)</b> and <b>Alberuni (Kitab-ul-Hind, 1031)</b>.",
+          "<b>Muhammad Ghori</b> came to rule, not to loot: checked at Kasahrada (1178) by the Solankis, he annexed the Ghaznavid Punjab and then turned on the Rajputs.",
+          "<b>First Battle of Tarain (1191)</b>: Prithviraj Chauhan defeated Ghori, who barely escaped.",
+          "<b>Second Battle of Tarain (1192)</b>: Ghori’s swift archers crushed Prithviraj — Delhi & Ajmer annexed; <b>the real foundation of Muslim rule in India</b> (source: Prithviraj Raso of Chandbardai).",
+          "<b>Battle of Chandawar (1194)</b>: Jaichandra of Kannauj slain — the Ganga plain lay open.",
+          "Ghori’s general <b>Bakhtiyar Khilji</b> overran Bihar & Bengal, destroyed <b>Nalanda & Vikramashila</b>, and toppled the Senas — before falling at Devkot (1206)."
+        ]
+      },
+      {
+        id:"med-slave", t:"Delhi Sultanate — Slave (Mamluk) Dynasty", era:"1206 – 1290",
+        pts:[
+          "<b>Qutbuddin Aibak</b> (1206–10), slave of Ghori, founded the Sultanate; titled <b>“Lakh Baksh”</b> (giver of lakhs); began the <b>Qutub Minar</b> (named after Sufi Bakhtiyar Kaki) & Quwwat-ul-Islam mosque; died at chaugan (polo).",
+          "<b>Iltutmish</b> (1211–36) — the <b>real consolidator</b>: shifted capital Lahore → Delhi; organised the <b>iqta system</b>; introduced the silver <b>tanka</b> & copper <b>jital</b>; created the <b>Chalisa (Corps of Forty)</b>; completed the Qutub Minar.",
+          "<b>Raziya</b> (1236–40): the <b>only woman Sultan of Delhi</b>; discarded the veil and led campaigns; favoured the Abyssinian Jamaluddin Yaqut — the Turkish nobles destroyed her (Kaithal, 1240).",
+          "<b>Balban</b> (1266–86): kingship as <b>Zil-i-Ilahi</b>, “shadow of God”; Persian etiquette of <b>sijda & paibos</b>; broke the Chalisa; created <b>Diwan-i-Arz</b> (military department); ruled by “blood and iron”.",
+          "After the paralysed Qaiqabad, the Khalji nobles seized power — the Slave dynasty ended (1290), but Delhi as empire-capital was now permanent."
+        ]
+      },
+      {
+        id:"med-khilji", t:"Delhi Sultanate — The Khaljis", era:"1290 – 1320",
+        pts:[
+          "<b>Jalaluddin Khalji</b> (1290–96) founded the line at seventy; assassinated by his ambitious nephew <b>Alauddin</b>.",
+          "<b>Alauddin Khalji</b> (1296–1316): styled himself <b>Sikandar-i-Sani</b>; conquered Gujarat (1299), Ranthambore (1301), <b>Chittor (1303</b> — Jayasi’s Padmini legend), Malwa; repelled six Mongol invasions.",
+          "His eunuch-general <b>Malik Kafur</b> raided the south — Devagiri, Warangal, Dwarasamudra, Madurai — reaching the Tamil tip of India.",
+          "<b>Market controls</b>: fixed prices policed by the <b>Diwan-i-Riyasat</b> and shahana-i-mandi; state granaries; spies (barids) reported prices; a permanent standing army paid in cash, horses branded (dagh), soldiers registered (chehra).",
+          "Revenue: land measured in <b>biswas</b>, demand in cash; new taxes — <b>gharai (house) and charai (grazing)</b>; the <b>gaz-i-Sikandari</b> yard.",
+          "Monuments: <b>Alai Darwaza</b>, Jamat Khana mosque, <b>Siri fort</b> (2nd city of Delhi) and the Hauz-i-Khas tank.",
+          "His son Mubarak Shah was murdered by the Hindu convert Khusrau Khan (1320) — <b>Ghiyasuddin Tughlaq</b> then took the throne."
+        ]
+      },
+      {
+        id:"med-tughlaq", t:"Delhi Sultanate — The Tughlaqs", era:"1320 – 1414",
+        pts:[
+          "<b>Ghiyasuddin Tughlaq</b> (1320–25), warden of the north-west marches, built Tughlaqabad; died when a reception pavilion collapsed (1325) near Afghanpur.",
+          "<b>Muhammad bin Tughlaq</b> (1325–51) — the most learned and most paradoxical Sultan (“mixture of opposites”): his five failures are exam staples.",
+          "① Transfer of capital <b>Delhi → Daulatabad</b> (1327, later reversed) ② <b>Token currency</b> — bronze tanka equal to silver: forged coins flooded markets ③ steep <b>Doab taxation</b> sparking agrarian revolt ④ Khurasan expedition ⑤ Himalayan (Qarachil) expedition.",
+          "<b>Ibn Battuta</b>, the Moroccan traveller and his qazi, arrived (1333) and records the reign in the <b>Rehla</b>; <b>Vijayanagara (1336) and the Bahmani kingdom (1347)</b> broke away — the Sultanate shrank to the north.",
+          "<b>Firuz Tughlaq</b> (1351–88): conciliatory public works — canals, free hospital (<b>Dar-ul-Shifa</b>), towns (Firozabad, Hisar, <b>Jaunpur</b>); created <b>Diwan-i-Khairat</b> (charity); first Sultan to levy <b>jaziya on Brahmins</b>; shifted two <b>Ashokan pillars (Topra & Meerut)</b> to Delhi.",
+          "His autobiography <b>Futuhat-i-Firuz Shahi</b>; Sanskrit works translated as Dalail-i-Firuz Shahi; reign ended with the Sultanate enfeebled — <b>Timur’s sack of Delhi (1398)</b> completed the ruin."
+        ]
+      },
+      {
+        id:"med-lodi", t:"Sayyids & Lodis — The Sultanate Twilight", era:"1414 – 1526",
+        pts:[
+          "<b>Sayyids</b> (1414–51): <b>Khizr Khan</b> — Timur’s nominee — founded the line (title Rayat-i-Ala); then Mubarak Shah, Muhammad Shah; <b>Alam Shah</b> abdicated voluntarily (1451) and retired to Badaun.",
+          "<b>Lodis</b> (1451–1526): the <b>first Afghan dynasty</b> of Delhi.",
+          "<b>Bahlul Lodi</b> sat on a carpet among his tribal nobles; annexed Jaunpur and secured the upper Ganga doab.",
+          "<b>Sikandar Lodi</b> (1489–1517): greatest Lodi; <b>founded Agra (1504)</b> and made it capital; measured land with the <b>gaz-i-Sikandari</b> (39 inches); wrote Persian verse as “Gulrukhi”.",
+          "<b>Ibrahim Lodi</b> — haughty (“kingship knows no kinship”) — alienated the nobles; <b>Daulat Khan Lodi and Rana Sanga invited Babur</b>.",
+          "Ibrahim fell on the field at <b>Panipat (1526)</b> — the only Sultan to die in battle; the <b>320-year Delhi Sultanate</b> ended; Lodi-era garden tombs pioneered the <b>double dome</b>."
+        ]
+      },
+      {
+        id:"med-vijayanagara", t:"The Vijayanagara Empire", era:"1336 – 1565",
+        pts:[
+          "Founded 1336 by the brothers <b>Harihara & Bukka</b> under the sage <b>Vidyaranya</b>; capital Vijayanagara (<b>Hampi</b>) on the Tungabhadra’s rocky defences.",
+          "Four dynasties ruled in turn: <b>Sangama → Saluva → Tuluva → Aravidu</b>.",
+          "<b>Devaraya II</b> (1422–46): recruited Muslims into his army; hosted the Persian envoy <b>Abdur Razzaq</b>, who marvelled at the city’s scale.",
+          "<b>Krishnadevaraya</b> (1509–29, Tuluva) — the greatest: crushed Bijapur at <b>Raichur (1520)</b> and humbled the Gajapatis of Orissa; allied with the Portuguese of Goa for war-horses.",
+          "A scholar-king: his Telugu classic <b>Amuktamalyada</b>; his court shone with the <b>Ashtadiggajas</b> — Allasani Peddana (“Andhra Kavita Pitamaha”) and <b>Tenali Ramakrishna</b>; Domingo Paes & Fernao Nuniz chronicled the city.",
+          "Built the <b>Hazara Rama & Vitthala temples</b>; vast irrigation works turned Tungabhadra plains into rice bowls; administration rested on the <b>nayankara system</b> of military-feudal chiefs.",
+          "<b>Battle of Talikota (1565)</b>: the allied Deccan sultanates killed <b>Aliya Rama Raya</b> and sacked Hampi — the empire survived at Penukonda but never the glory."
+        ]
+      },
+      {
+        id:"med-bahmani", t:"Bahmani Kingdom & the Deccan Sultanates", era:"1347 – 1527",
+        pts:[
+          "<b>1347</b>: <b>Alauddin Hasan Bahman Shah</b> founded the Bahmani kingdom in revolt from Delhi; capital <b>Gulbarga → Bidar</b> (under Ahmad Shah Wali).",
+          "The great minister <b>Mahmud Gawan</b> (1463–81), a Persian merchant-turned-wazir, spread the realm <b>coast-to-coast</b>, redivided it into eight tarafs and disciplined the nobility — the <b>Deccani party</b> forged letters and had him executed (1481).",
+          "His death opened decline; the struggle of <b>Deccani (local) vs Pardesi (Persian newcomer)</b> nobles tore the court apart.",
+          "The kingdom fragmented into five sultanates: <b>Bijapur (Adil Shahi)</b>, <b>Ahmadnagar (Nizam Shahi)</b>, <b>Golconda (Qutub Shahi)</b>, <b>Bidar (Barid Shahi)</b>, <b>Berar (Imad Shahi)</b>.",
+          "Heritage: Bidar’s <b>Mahmud Gawan madarasa</b>; Bijapur’s <b>Gol Gumbaz</b> — among the world’s largest domes; Golconda’s sultan Muhammad Quli founded <b>Hyderabad (1591)</b> and built the <b>Charminar</b>.",
+          "These five states united only once — to destroy <b>Vijayanagara at Talikota (1565)</b>."
+        ]
+      },
+      {
+        id:"med-bhakti", t:"Bhakti & Sufi Movements", era:"12th – 17th century",
+        pts:[
+          "Roots: the Tamil <b>Alvars (Vaishnava) & Nayanars (Shaiva)</b>, philosophized by Ramanuja’s qualified monism.",
+          "<b>Ramananda</b> first preached in Hindi, accepting disciples of every caste — among them <b>Kabir (1440–1518)</b>, weaver of Varanasi, whose dohas mock the ritualism of both religions; the <b>Bijak</b> is his book; his hymns entered the <b>Guru Granth Sahib</b>.",
+          "<b>Guru Nanak (1469–1539)</b> founded Sikhism at Talwandi (Nankana Sahib); instituted <b>sangat & langar</b>; his hymns too entered the Adi Granth, compiled 1604 by the fifth Guru, <b>Arjan Dev</b>.",
+          "Saguna poets of Krishna-bhakti: <b>Surdas</b> (Sursagar), <b>Tulsidas</b> (Ramcharitmanas — Akbar’s reign), <b>Mirabai</b> of Mewar, <b>Vallabhacharya</b> (Pushtimarga), and <b>Chaitanya of Bengal</b> with his kirtans.",
+          "Maharashtra’s <b>Varkari</b> saints: Jnaneshwar, Namdev, <b>Tukaram</b>, Eknath — centred on <b>Vithoba of Pandharpur</b>; Karnataka’s <b>Lingayats</b> of Basava, the 12th-century reformer.",
+          "<b>Sufi orders</b>: the <b>Chishtis</b> (Moinuddin Chishti — Ajmer dargah; Nizamuddin Auliya; poet-musician <b>Amir Khusrau</b>) kept aloof from court life and loved musical sama; the <b>Suhrawardi</b> (Bahauddin Zakariya of Multan) accepted state office.",
+          "Both streams sang in the vernacular, ignored caste and shrines alike — weaving the shared devotional fabric of medieval India."
+        ]
+      },
+      {
+        id:"med-mughal", t:"The Mughal Empire", era:"1526 – 1707",
+        pts:[
+          "<b>Babur (1526–30)</b>, Timurid of Fergana: won <b>Panipat I (1526)</b> with artillery & tulughma tactics; <b>Khanwa (1527)</b> vs Rana Sanga; Ghaghra (1529); his <b>Tuzuk-i-Baburi</b> is history’s great autobiography.",
+          "<b>Humayun (1530–40)</b> lost two battles to <b>Sher Shah — Chausa (1539) & Kannauj (1540)</b> — wandered in exile fifteen years; recaptured Delhi 1555; died in a fall from his library stairs (1556).",
+          "<b>Sher Shah Sur (1540–45)</b>: built the <b>Grand Trunk Road</b> with sarais; measured land, issued <b>patta & kabuliyat</b>, coined the silver <b>rupiya</b> — Mughal & British systems grew from his blueprint; his tomb floats in a lake at <b>Sasaram</b>.",
+          "<b>Akbar (1556–1605)</b>: regent Bairam Khan won <b>Panipat II (1556)</b> vs Hemu; abolished pilgrimage tax (1563) & <b>jaziya (1564)</b>; annexed Malwa, Chittor, Gujarat, Bengal, Kashmir; debated all faiths in the <b>Ibadat Khana (1575)</b> → <b>Din-i-Ilahi (1582)</b>; <b>Abul Fazl’s Akbarnama & Ain-i-Akbari</b>; the Nine Gems (Birbal, Tansen, Todar Mal…).",
+          "<b>Jahangir (1605–27)</b>: chain of justice; executed <b>Guru Arjan Dev (1606)</b>; <b>Nur Jahan</b> ruled in his name; <b>Sir Thomas Roe (1615)</b> secured English trade rights; Mughal painting peaked.",
+          "<b>Shah Jahan (1628–58)</b>: golden age of architecture — <b>Taj Mahal</b> (Ustad Ahmad Lahauri), <b>Red Fort, Jama Masjid, Peacock Throne</b>; European travellers Bernier, Tavernier, Manucci record the court.",
+          "<b>Aurangzeb ‘Alamgir’ (1658–1707)</b>: empire’s greatest extent; annexed <b>Bijapur (1686) & Golconda (1687)</b>; reimposed jaziya (1679); executed <b>Guru Tegh Bahadur (1675)</b> and <b>Sambhaji (1689)</b>; 26 years of Deccan war against the Marathas emptied the treasury; died 1707, buried in an austere grave at <b>Khuldabad</b>."
+        ]
+      },
+      {
+        id:"med-maratha", t:"The Maratha Rise to Power", era:"1674 – 1818",
+        pts:[
+          "<b>Shivaji Bhonsle (1630–80)</b>: born at Shivneri, raised on Jijabai’s ideals; slew Afzal Khan at Pratapgarh (1659); sacked Surat (1664); <b>Treaty of Purandar (1665)</b>, Agra captivity and the famous basket escape (1666).",
+          "Crowned <b>Chhatrapati at Raigad (6 June 1674)</b> by the Varanasi pandit Gaga Bhatt; governed through the <b>Ashtapradhan</b> — the council of eight (Peshwa = PM, Amatya = finance, Sachiv, Senapati, Sumant, Nyayadhish, Panditrao, Waqia-navis).",
+          "Revenue: <b>Chauth (¼)</b> + <b>Sardeshmukhi (1/10)</b> — extracted from Mughal Deccan as protection claims.",
+          "<b>Sambhaji</b> was executed by Aurangzeb (1689); regent <b>Tarabai</b> kept resistance alive till Shahu’s return; then power passed to the hereditary <b>Peshwas</b>.",
+          "<b>Baji Rao I (1720–40)</b> — the greatest Peshwa; unbeaten in 41 battles; <b>Palkhed (1728)</b> vs the Nizam is taught as a marching masterpiece; raised the dream of Hindu-pad-padshahi.",
+          "<b>Third Battle of Panipat (14 Jan 1761)</b>: Ahmad Shah Abdali shattered the Marathas — Sadashivrao Bhau & Vishwasrao fell; expansion never truly recovered.",
+          "Confederacy of sardars: <b>Peshwa (Pune), Holkar (Indore), Scindia (Gwalior), Gaekwad (Baroda), Bhonsle (Nagpur)</b>; destroyed in the <b>Anglo-Maratha wars</b> — Salbai 1782, Bassein 1802, and the final war of 1817–18 which pensioned <b>Baji Rao II to Bithur</b> and extinguished the Peshwaship."
+        ]
+      },
+      {
+        id:"med-latermughals", t:"Later Mughals & the Sikh Kingdom", era:"1707 – 1849",
+        pts:[
+          "Weak emperors after 1707: <b>Farrukhsiyar</b> a puppet of the <b>Sayyid Brothers</b> — the king-makers; the year <b>1719 alone saw four emperors</b>.",
+          "<b>Muhammad Shah ‘Rangila’ (1719–48)</b>: during his reign <b>Nadir Shah sacked Delhi (1739 — Battle of Karnal)</b> and carried off the <b>Peacock Throne & the Kohinoor</b>.",
+          "Successor states: <b>Hyderabad (Nizam-ul-Mulk, 1724)</b>, Awadh (Saadat Khan), Bengal (Murshid Quli Khan → Alivardi Khan), Bharatpur of the Jats (Suraj Mal), Mysore of <b>Haidar Ali</b>.",
+          "Sikh Gurus: Nanak → Angad (Gurmukhi) → Amar Das → Ram Das (founded Amritsar) → <b>Arjan Dev (Adi Granth 1604; executed 1606)</b> → Har Gobind (<b>Akal Takht</b>; two swords — Miri & Piri) → Har Rai → Har Krishan → <b>Tegh Bahadur (executed 1675)</b> → <b>Gobind Singh (Khalsa 1699; made the Granth Sahib the eternal Guru)</b>.",
+          "<b>Banda Bahadur</b> avenged the Guru’s sons, gave village lands to the tiller, and was executed (1716).",
+          "<b>Maharaja Ranjit Singh (r. 1801–1839)</b> — the Lion of Punjab — forged twelve misls into one Sikh kingdom, capital Lahore; <b>Treaty of Amritsar (1809)</b> fixed the Sutlej with the British; European generals Ventura & Allard drilled his Fauj-i-Khas.",
+          "After his death anarchy; the <b>Anglo-Sikh wars (1845–46: Mudki, Ferozshah, Aliwal, Sobraon — Treaty of Lahore; 1848–49: Chillianwala, Gujarat)</b> ended with Dalhousie <b>annexing Punjab (1849)</b>; boy-king Duleep Singh surrendered — and with him, the <b>Kohinoor</b>."
+        ]
+      }
+    ]
+  },
 
-                this.classList.toggle('active');
-                const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        });
+  mod: {
+    label:"Modern India", roman:"III", icon:"landmark",
+    range:"1498 – 1977 CE",
+    blurb:"From Vasco da Gama’s anchor at Calicut to the ballot-box verdict on the Emergency.",
+    topics:[
+      {
+        id:"mod-europeans", t:"Advent of the Europeans", era:"1498 – 1763",
+        pts:[
+          "<b>Vasco da Gama</b> anchored at Calicut (1498), received by the <b>Zamorin</b>; da Gama’s second voyage (1502) and Cabral (1500) planted factories.",
+          "Portuguese viceroys: <b>Almeida (Blue Water Policy)</b>; <b>Albuquerque conquered Goa (1510)</b> from Bijapur — Goa, Daman & Diu stayed Portuguese till <b>1961</b>, the longest colonial rule in India.",
+          "<b>Dutch (VOC, 1602)</b>: Pulicat, Nagapattinam, Chinsurah; crushed by the English at <b>Bedara (1759)</b> and withdrew from Indian politics.",
+          "<b>English EIC (1600)</b>: Hawkins at Jahangir’s court (1608); first factory <b>Surat (1613)</b>; <b>Sir Thomas Roe (1615–19)</b> won royal firmans; Madras (1639, Francis Day — Fort St George), <b>Bombay (1668</b> — dowry of Catherine of Braganza), <b>Calcutta (1690</b> — Job Charnock, Fort William).",
+          "<b>French (1664, Colbert)</b>: capital Pondicherry (1674, François Martin); the three <b>Carnatic Wars</b> decided Anglo-French supremacy.",
+          "<b>Wandiwash (1760)</b>: Eyre Coote defeated Count de Lally; the Treaty of Paris (1763) left the French only unfortified trading posts — the road to British India lay open."
+        ]
+      },
+      {
+        id:"mod-plassey", t:"Plassey & Buxar — The Conquest of Bengal", era:"1757 – 1772",
+        pts:[
+          "<b>Siraj-ud-Daula</b> seized Calcutta (1756); the disputed <b>“Black Hole” tragedy</b> (Holwell’s account, numbers exaggerated) gave Clive his pretext.",
+          "<b>Battle of Plassey (23 June 1757)</b> — on the Bhagirathi’s bank: <b>Robert Clive</b> bribed <b>Mir Jafar</b>, the Jagat Seths, Rai Durlabh & Umichand; rain ruined Bengal’s ammunition; barely a battle — a transaction.",
+          "Mir Jafar, then <b>Mir Qasim</b>, were played as puppet nawabs; Clive’s gifts & jagirs made “corruption” the first word of Company rule (“I stand astonished at my own moderation”).",
+          "<b>Battle of Buxar (22 Oct 1764)</b>: Major <b>Hector Munro</b> routed the triple alliance of Mir Qasim, <b>Shuja-ud-Daula of Awadh</b> & Emperor <b>Shah Alam II</b> — far more decisive than Plassey.",
+          "<b>Treaty of Allahabad (1765)</b>: the Company took the <b>Diwani</b> (revenue rights) of Bengal, Bihar & Orissa from the Emperor; the Nawab kept Nizamat (policing).",
+          "The <b>Dual Government (1765–72)</b> — power without responsibility — brought the famine of 1770 and administrative chaos, ended by <b>Warren Hastings</b>."
+        ]
+      },
+      {
+        id:"mod-governors", t:"Governor-Generals & Viceroys — A Working Repository", era:"1772 – 1947",
+        pts:[
+          "<b>Warren Hastings (1772–85)</b>: first GG of Bengal (Regulating Act 1773 — Supreme Court 1774); ended Dual Government; <b>Asiatic Society of Bengal (1784)</b>; impeached, acquitted.",
+          "<b>Cornwallis (1786–93)</b>: <b>Permanent Settlement (1793)</b> with John Shore; “father of the Indian civil service”; separated revenue from justice — the Cornwallis Code.",
+          "<b>Wellesley (1798–1805)</b>: the <b>Subsidiary Alliance</b> — first signed by the Nizam of Hyderabad (1798); <b>Tipu Sultan fell at Srirangapatna (1799)</b>.",
+          "<b>Lord Hastings (1813–23)</b>: Sagauli treaty after the Gurkha war (1816); Third Maratha war; <b>Ryotwari settlement (Munro)</b>; <b>Mahalwari (Holt Mackenzie, 1822)</b>.",
+          "<b>William Bentinck (1828–35)</b>: first “Governor-General of <b>India</b>” (Charter Act 1833); <b>Sati abolished (1829)</b> with Rammohan Roy’s agitation; Thuggee suppressed by Sleeman; <b>Macaulay’s Minute (1835)</b> made English the medium.",
+          "<b>Dalhousie (1848–56)</b>: <b>Doctrine of Lapse</b> — Satara first (1848), then Jaitpur, Sambalpur, Jhansi, Nagpur; annexed Punjab; <b>first railway Bombay–Thane (1853)</b>, telegraph, uniform postage; <b>Wood’s Despatch (1854)</b> — “Magna Carta of English education”; three universities (1857); <b>Widow Remarriage Act (1856)</b>.",
+          "Later landmarks: <b>Canning</b> — 1857, first Viceroy (Queen’s Proclamation 1858); <b>Lytton</b> — Vernacular Press & Arms Acts (1878), Delhi Durbar 1877; <b>Ripon</b> — Local Self-Government (1882), Ilbert Bill storm; <b>Curzon</b> — <b>Partition of Bengal (1905)</b>; <b>Mountbatten (1947)</b> — the last Viceroy; <b>C. Rajagopalachari</b> — first (and last) Indian Governor-General (1948)."
+        ]
+      },
+      {
+        id:"mod-1857", t:"The Revolt of 1857", era:"1857 – 1858",
+        pts:[
+          "Causes: annexations & the Doctrine of Lapse; economic drain & handicraft ruin; social-religious interference; the General Service Enlistment Act (1856); and above all — the <b>greased Enfield cartridges</b>.",
+          "<b>Mangal Pandey</b> struck at Barrackpore (29 March 1857, 34th BNI; hanged 8 April); the <b>Meerut sepoys rose on 10 May 1857</b> and rode to Delhi.",
+          "Leaders: Delhi — Emperor <b>Bahadur Shah II</b> (deported to Rangoon; Gen. Bakht Khan led troops); <b>Kanpur — Nana Saheb</b> with <b>Tantia Tope</b> & Azimullah; <b>Lucknow — Begum Hazrat Mahal</b>; <b>Jhansi — Rani Lakshmibai</b> (born Manikarnika; fell at Kotah-ki-Serai, June 1858 — Hugh Rose called her “the best and bravest” of the rebels); <b>Bihar — Kunwar Singh</b> of Jagdishpur; <b>Faizabad — Maulvi Ahmadullah</b>.",
+          "Delhi recaptured by <b>John Nicholson</b>; Lucknow finally by Colin Campbell; Central India by <b>Hugh Rose</b>; Tantia Tope hanged (1859).",
+          "Why it failed: no Bengal-wide leadership, few modern arms, feudal & divided aims; the Punjab, Sindh and the South largely quiet.",
+          "Consequences: <b>Government of India Act 1858</b> — the Crown replaced the Company; office of <b>Viceroy</b> created; Mughal dynasty ended; army restructured (1:2, Indian:European ratio); princely states guaranteed.",
+          "Historians: <b>V.D. Savarkar — “First War of Indian Independence” (1909, banned)</b>; Disraeli — “a national revolt, not a military mutiny”; <b>R.C. Majumdar</b> — “neither first, nor national, nor a war of independence”; S.N. Sen’s official <i>Eighteen Fifty-Seven</i> (1957)."
+        ]
+      },
+      {
+        id:"mod-reforms", t:"Socio-Religious Reform Movements", era:"19th – early 20th century",
+        pts:[
+          "<b>Brahmo Samaj</b> (Raja Rammohan Roy, 1828 — “Father of the Indian Renaissance”): monotheism, anti-idolatry; agitated against <b>Sati</b> — abolished 1829; Sambad Kaumudi & Mirat-ul-Akhbar journals; successors: Debendranath Tagore (Adi Brahmo), <b>Keshab Chandra Sen</b> (Brahmo Samaj of India, 1866), Sadharan Brahmo Samaj (1878).",
+          "<b>Prarthana Samaj</b> (Bombay, 1867): Atmaram Pandurang; joined by Justice <b>M.G. Ranade</b> & R.G. Bhandarkar.",
+          "<b>Arya Samaj</b> (Swami Dayananda, 1875): “Back to the Vedas”; <b>Satyarth Prakash</b>; shuddhi (reconversion); <b>DAV colleges (1886)</b>; Dayananda first used “swaraj” for self-rule.",
+          "<b>Ramakrishna Mission</b> (1897): Swami Vivekananda — the <b>Chicago Parliament of Religions (1893)</b>; “service to man is service to God”; Belur Math.",
+          "<b>Theosophical Society</b>: Blavatsky & Olcott (1875) — <b>Adyar HQ (1882)</b>; Annie Besant founded the Central Hindu College (nucleus of BHU) and a Home Rule League.",
+          "<b>Aligarh Movement</b>: Sir Syed Ahmad Khan — Scientific Society (1864), <b>MAO College (1875 → AMU 1920)</b>; counter-currents: <b>Deoband (1866)</b> & Nadwatul Ulama.",
+          "Caste & gender: <b>Vidyasagar</b> — Widow Remarriage Act 1856; Malabari — <b>Age of Consent Act 1891</b>; <b>Sharda Act 1929</b>; <b>Jyotiba & Savitribai Phule</b> (first girls’ school, 1848; Satyashodhak Samaj 1873; <i>Gulamgiri</i>); <b>Sri Narayana Guru</b> (“one caste, one religion, one God”); <b>Periyar’s Self-Respect Movement (1925)</b>; <b>Ambedkar</b> — Mahad Satyagraha & Manusmriti burning (1927), Kalaram temple entry (1930)."
+        ]
+      },
+      {
+        id:"mod-constitutional", t:"Constitutional Developments under the British", era:"1773 – 1935",
+        pts:[
+          "<b>Regulating Act 1773</b>: Parliament’s first interference; <b>Governor-General of Bengal + 4-member council</b>; Supreme Court at Calcutta (1774).",
+          "<b>Pitt’s India Act 1784</b>: <b>double government</b> — Board of Control (political) over the Court of Directors (commercial); first use of “British possessions in India”.",
+          "<b>Charter Acts</b>: 1813 ended trade monopoly (save tea & China) and granted ₹1 lakh for education; <b>1833 created the “Governor-General of India” (Bentinck first)</b> and a Law Member (Macaulay, 1834); 1853 separated legislative & executive wings and opened civil service competition (ICS from 1855).",
+          "<b>Government of India Act 1858</b>: Company rule ended; <b>Secretary of State for India</b> with an India Council; Governor-General became <b>Viceroy</b>.",
+          "<b>Indian Councils Acts</b>: 1861 — first nominated Indian members (Raja of Banaras, Maharaja of Patiala, Dinkar Rao), portfolio system, ordinance power; <b>1892 — first whiff of “indirect election”</b>, budget discussion; <b>1909 (Morley-Minto) — separate electorates for Muslims</b>; first Indian in the Viceroy’s Executive Council: Satyendra Prasad Sinha (Law).",
+          "<b>Government of India Act 1919</b> (Montagu-Chelmsford): <b>dyarchy in provinces</b> (Reserved vs Transferred subjects); central bicameralism; promised a review in ten years → the all-white <b>Simon Commission (1928)</b> boycotted amid “Simon Go Back”.",
+          "<b>Government of India Act 1935</b>: <b>All-India Federation</b> (never born), <b>Provincial Autonomy (1937 elections)</b>, dyarchy for the centre (never operated); three lists; <b>RBI & Federal Court</b>; Burma separated; ~321 clauses of modern India’s Constitution descend from it."
+        ]
+      },
+      {
+        id:"mod-inc", t:"Early Nationalism & the Congress", era:"1857 – 1919",
+        pts:[
+          "Precursor bodies: <b>East India Association</b> (Dadabhai Naoroji, London, 1866), Poona Sarvajanik Sabha (M.G. Ranade, 1870), <b>Indian Association</b> (Surendranath Banerjee, 1876 — first all-India body); the <b>Ilbert Bill agitation (1883)</b> taught the need for a national platform.",
+          "<b>INC founded 1885</b> by <b>A.O. Hume</b> with Viceroy Dufferin’s blessing (“safety-valve” theory); first session <b>Bombay, 28 Dec 1885</b>, 72 delegates, President <b>W.C. Bonnerjee</b>.",
+          "<b>Moderates</b> (1885–1905): the three Ps — prayer, petition, protest; <b>Naoroji’s Drain of Wealth theory</b> (Poverty and Un-British Rule in India; first Indian MP); Gokhale — Gandhi’s political guru, <b>Servants of India Society (1905)</b>.",
+          "<b>Extremists</b>: Lal–Bal–Pal — Lala Lajpat Rai (Punjab Kesari), <b>Bal Gangadhar Tilak</b> (“Father of Indian Unrest”, Kesari & Maratha, Shivaji & Ganpati festivals) & Bipin Chandra Pal; four-fold programme: <b>swadeshi, boycott, national education, passive resistance</b>.",
+          "<b>Curzon’s Partition of Bengal (1905)</b> loosed the <b>Swadeshi movement</b>: Raksha Bandhan by Tagore; <b>Vandemataram</b> (Bankim’s Anandamath) as the anthem of protest; Bengal National College with Aurobindo as principal; annulled <b>1911</b> when George V shifted the capital to Delhi.",
+          "<b>Muslim League</b> (1906, Dacca): Aga Khan, Nawab Salimullah, Mohsin-ul-Mulk — nurtured by the Simla Deputation to Minto.",
+          "<b>Surat Split (1907)</b> → reunion & <b>Lucknow Pact (1916)</b> (Congress–League); <b>Home Rule Leagues (1916)</b> — Tilak’s at Poona (“Swaraj is my birthright and I shall have it”) and Annie Besant’s at Madras."
+        ]
+      },
+      {
+        id:"mod-gandhi", t:"The Gandhian Era", era:"1915 – 1947",
+        pts:[
+          "Gandhi returned <b>9 January 1915</b>; mentor Gokhale; early satyagrahas: <b>Champaran (1917)</b> — first civil disobedience; <b>Ahmedabad mill strike (1918)</b> — first hunger strike; <b>Kheda (1918)</b> — first non-cooperation.",
+          "<b>Rowlatt Satyagraha (1919)</b> — first all-India movement; the “no appeal, no vakil, no daleel” Act; <b>Jallianwala Bagh (13 April 1919)</b> — Dyer’s firing; Tagore renounced his knighthood; Udham Singh avenged it in 1940.",
+          "<b>Non-Cooperation + Khilafat (1920–22)</b>: Calcutta & Nagpur sessions; Jamia, Kashi & Gujarat Vidyapiths founded; <b>Chauri Chaura (5 Feb 1922)</b> — 22 policemen burnt — Gandhi called it off.",
+          "<b>Simon Commission (1928)</b> boycott; <b>Lala Lajpat Rai</b> died of lathi injuries; <b>Nehru Report (1928)</b> vs <b>Jinnah’s 14 Points (1929)</b>; <b>Lahore session (Dec 1929) — Purna Swaraj</b>; 26 Jan 1930 first Independence Day.",
+          "<b>Civil Disobedience (1930)</b>: <b>Dandi Salt March</b> — 12 March to 6 April, 240 miles, 78 followers; Rajagopalachari at Vedaranyam; <b>Khan Abdul Ghaffar Khan</b> (“Frontier Gandhi”, Khudai Khidmatgars); Rani Gaidinliu; Dharasana — Sarojini Naidu & Webb Miller’s reporting.",
+          "<b>Gandhi–Irwin Pact (March 1931)</b>; Gandhi at the Second Round Table Conference; <b>Communal Award (1932)</b> → Yerwada fast → <b>Poona Pact (Sept 1932)</b> with Ambedkar; Harijan uplift; CDM withdrawn 1934.",
+          "1937 provincial ministries; resigned 1939; WWII offers — August Offer, Individual Satyagraha (Vinoba first), <b>Cripps Mission (1942 — “a post-dated cheque”)</b>; <b>Quit India (8 Aug 1942) — “Do or Die”</b>; underground heroes: Jayaprakash Narayan, Aruna Asaf Ali, Usha Mehta; parallel governments at <b>Ballia, Tamluk & Satara</b>.",
+          "<b>Subhash Chandra Bose</b>: Tripuri resig­nation (1939), Forward Bloc, escape (1941), <b>INA & Azad Hind government (1943)</b>, slogans “Jai Hind”, “Dilli Chalo”, “Tum mujhe khoon do…”; Moirang flag (1944); death in the 1945 plane crash; <b>INA Red Fort trials & RIN Mutiny (1946)</b> — the Raj had lost the sword-arm; departure became inevitable."
+        ]
+      },
+      {
+        id:"mod-independence", t:"Freedom & Partition", era:"1945 – 1947",
+        pts:[
+          "<b>Labour under Attlee (1945)</b>; Wavell’s Shimla Conference (June 1945) failed on the League’s veto claim; elections 1945–46 — League swept the Muslim seats.",
+          "<b>Cabinet Mission (Mar–Jun 1946)</b>: Pethick-Lawrence, Cripps & A.V. Alexander; rejected Pakistan, proposed a three-tier Union with <b>Groups A, B, C</b> and compulsory grouping — League withdrew acceptance and called <b>Direct Action Day (16 Aug 1946, Calcutta killings)</b>.",
+          "Interim Government — Nehru PM (2 Sept 1946; League joined October); <b>Constituent Assembly first met 9 Dec 1946</b>; temporary chairman Sachchidananda Sinha; permanent President <b>Dr. Rajendra Prasad (11 Dec)</b>; Nehru’s Objectives Resolution (13 Dec).",
+          "<b>Attlee’s statement (20 Feb 1947)</b>: Britain out by June 1948; <b>Mountbatten</b> arrived (last Viceroy); the <b>June 3 Plan</b> accepted partition — <b>Radcliffe</b> would draw the lines.",
+          "<b>Indian Independence Act (July 1947)</b>: two dominions from <b>15 August 1947</b>; paramountcy over 560-odd princely states lapsed.",
+          "Mountbatten — first Governor-General of free India; <b>Jinnah</b> — of Pakistan; <b>Gandhi, keeping fast in Calcutta for peace, refused to celebrate</b>; assassinated at Birla House on <b>30 January 1948</b>.",
+          "<b>Kashmir</b>: tribal invasion (Oct 1947) → Hari Singh’s <b>Instrument of Accession (26 Oct 1947)</b> → airlift and war — ceasefire 1 January 1949; line hardened into the LOC."
+        ]
+      },
+      {
+        id:"mod-post", t:"Post-Independence Consolidation", era:"1947 – 1977",
+        pts:[
+          "<b>Integration of the princely states</b>: <b>Sardar Patel & V.P. Menon</b> secured nearly 560 accessions; resistances cracked one by one — <b>Junagadh (plebiscite, 1948)</b>, <b>Hyderabad (Operation Polo, Sept 1948)</b>, Kashmir; French pockets (Pondicherry 1954) and Portuguese Goa (<b>Operation Vijay: Dec 1961</b>) folded in later.",
+          "Framing the Republic: Constitution adopted <b>26 November 1949</b>, in force <b>26 January 1950</b> (Purna Swaraj Day, remembered); <b>Dr. B.R. Ambedkar</b> chaired the Drafting Committee; 2 years 11 months 18 days of labour; handwritten by <b>Prem Behari Narain Raizada</b>, illustrated by Nand Lal Bose.",
+          "<b>States reorganisation</b>: Potti Sriramulu’s martyrdom (Dec 1952) forced <b>Andhra — first linguistic state (1953)</b>; the <b>Fazl Ali Commission (1953)</b> → States Reorganisation Act: <b>14 States & 6 UTs (1956)</b>; later Maharashtra & Gujarat (1960), Punjab–Haryana (1966), and the Northeast states (1972).",
+          "Foreign policy: Panchsheel (1954), Bandung (1955) & <b>NAM</b>; wars: China <b>1962</b>; Pakistan 1965 — <b>Shastri’s “Jai Jawan Jai Kisan”</b> and the Tashkent Declaration (1966), signed hours before his death.",
+          "<b>Indira Gandhi (1966)</b>: bank nationalisation (1969), privy purses abolished (1971), “Garibi Hatao”; <b>1971 war → Bangladesh (16 Dec 1971)</b>; Shimla Agreement (1972).",
+          "Domestic transformation: <b>Green Revolution (M.S. Swaminathan)</b> from 1966; <b>White Revolution / Operation Flood (Verghese Kurien, 1970)</b>; first nuclear device — <b>Pokhran I “Smiling Buddha” (1974)</b>.",
+          "Turbulence and turn: <b>JP’s Sampoorna Kranti (1974)</b>; Emergency (<b>25 June 1975 – 21 March 1977</b>); the ballot delivered India’s <b>first non-Congress government — Morarji Desai’s Janata Party (1977)</b>: democracy itself had been tested, and endured."
+        ]
+      }
+    ]
+  }
+};
 
-        function updateMap(topicName) {
-            const mapImage = document.getElementById('history-map');
-            const mapCaption = document.getElementById('map-caption');
-            const mapTitle = document.getElementById('map-title');
+/* ═════════════════════ STATE ═════════════════════ */
+const state = { tab:"anc", open:{anc:null, med:null, mod:null}, query:"" };
 
-            mapTitle.innerText = topicName.split('|')[0] || topicName; 
-            mapCaption.innerText = topicName + " Map Loading...";
+const $ = s => document.querySelector(s);
+const accList = $("#accList"), tabBar = $("#tabBar"), searchBox = $("#searchBox");
 
-            mapImage.style.opacity = 0.2;
-            
-            setTimeout(() => {
-                // To Use your own maps, replace the URL below with: `maps/${topicName.toLowerCase().replace(/ /g, '-')}.jpg`
-                mapImage.src = `https://via.placeholder.com/600x450/0f172a/d4af37?text=${encodeURIComponent(topicName)}+Map`;
-                mapImage.style.opacity = 1;
-                mapCaption.innerText = "Showing Map for: " + topicName;
-            }, 400);
-        }
-    </script>
+const ROMAN = { anc:"I", med:"II", mod:"III" };
+const ALL_TOPICS = Object.keys(TABS).flatMap(k => TABS[k].topics.map(t => ({...t, tab:k})));
+
+/* ═════════════════════ STAT STRIP ═════════════════════ */
+(function stats(){
+  const chapters = ALL_TOPICS.length;
+  const points = ALL_TOPICS.reduce((n,t)=>n+t.pts.length,0);
+  $("#statStrip").innerHTML = `
+    <span>${chapters} Chapters</span>
+    <span style="color:var(--gold)">·</span>
+    <span>${points} Exam Points</span>
+    <span style="color:var(--gold)">·</span>
+    <span>3 Eras</span>
+    <span style="color:var(--gold)">·</span>
+    <span>c. 500,000 BCE – 1977 CE</span>`;
+})();
+
+/* ═════════════════════ TAB BAR ═════════════════════ */
+function renderTabs(){
+  tabBar.innerHTML = Object.keys(TABS).map(k=>{
+    const e = TABS[k];
+    return `<button class="tab-btn ${k===state.tab?'active':''}" data-tab="${k}">
+      <i data-lucide="${e.icon}" class="w-5 h-5 tab-icon"></i>
+      <span class="font-fell text-[16px] md:text-lg tracking-wide leading-none">${e.label}</span>
+      <span class="tab-era font-serif-it italic text-[11px] md:text-xs opacity-70">${e.range}</span>
+    </button>`;
+  }).join("");
+  tabBar.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click", ()=>{
+    if(b.dataset.tab===state.tab) return;
+    state.tab=b.dataset.tab; state.query=""; searchBox.value="";
+    renderTabs(); renderList(true);
+  }));
+  lucide.createIcons();
+}
+
+/* ═════════════════════ ACCORDIONS ═════════════════════ */
+function topicMatches(t,q){
+  const hay = (t.t+" "+t.era+" "+t.pts.join(" ")).replace(/<[^>]+>/g,"").toLowerCase();
+  return q.split(/\s+/).every(w=>hay.includes(w));
+}
+
+function renderList(animate){
+  const era = TABS[state.tab];
+  $("#eraTitle").textContent = era.label;
+  $("#eraBlurb").textContent = era.blurb;
+
+  const q = state.query.trim().toLowerCase();
+  const filtered = era.topics.filter(t=>!q||topicMatches(t,q));
+  $("#searchCount").textContent = q ? filtered.length+"/"+era.topics.length : "";
+  $("#noResults").classList.toggle("hidden", filtered.length>0);
+
+  accList.innerHTML = filtered.map((t)=>{
+    const idx = era.topics.indexOf(t);
+    const num = `${ROMAN[state.tab]}·${String(idx+1).padStart(2,"0")}`;
+    return `<div class="acc" data-id="${t.id}">
+      <button class="acc-head" aria-expanded="false">
+        <span class="acc-num">${num}</span>
+        <span><span class="acc-title">${t.t}</span><span class="acc-era">${t.era}</span></span>
+        <span class="acc-chv"><i data-lucide="chevron-down" class="w-4 h-4"></i></span>
+      </button>
+      <div class="acc-body"><div class="acc-inner"><ul class="pts">
+        ${t.pts.map(p=>`<li>${p}</li>`).join("")}
+      </ul></div></div>
+    </div>`;
+  }).join("");
+
+  lucide.createIcons();
+
+  accList.querySelectorAll(".acc").forEach(el=>{
+    el.querySelector(".acc-head").addEventListener("click",()=>toggleAcc(el));
+  });
+
+  // reopen remembered topic for this tab
+  if(!q && state.open[state.tab] && filtered.some(t=>t.id===state.open[state.tab])){
+    const el = accList.querySelector(`[data-id="${state.open[state.tab]}"]`);
+    if(el) openAcc(el, true);
+  } else {
+    $("#plateNum").textContent="PLATE —";
+    setIdlePlate();
+  }
+
+  if(animate){
+    accList.classList.remove("in");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>accList.classList.add("in")));
+  }
+}
+
+function toggleAcc(el){
+  if(el.classList.contains("open")){ closeAcc(el); state.open[state.tab]=null; setIdlePlate(); $("#plateNum").textContent="PLATE —"; }
+  else{
+    const cur = accList.querySelector(".acc.open");
+    if(cur) closeAcc(cur);
+    openAcc(el);
+  }
+}
+function openAcc(el, instant){
+  const id = el.dataset.id;
+  const topic = TABS[state.tab].topics.find(t=>t.id===id);
+  el.classList.add("open");
+  el.querySelector(".acc-head").setAttribute("aria-expanded","true");
+  const body = el.querySelector(".acc-body");
+  body.style.height = body.scrollHeight + "px";
+  if(instant){ body.style.transition="none"; requestAnimationFrame(()=>body.style.transition=""); }
+  state.open[state.tab]=id;
+  const idx = TABS[state.tab].topics.indexOf(topic);
+  swapPlate(topic, `${ROMAN[state.tab]}·${String(idx+1).padStart(2,"0")}`);
+}
+function closeAcc(el){
+  el.classList.remove("open");
+  el.querySelector(".acc-head").setAttribute("aria-expanded","false");
+  el.querySelector(".acc-body").style.height = "0px";
+}
+window.addEventListener("resize", ()=>{
+  const open = accList.querySelector(".acc.open .acc-body");
+  if(open) open.style.height = open.scrollHeight+"px";
+});
+
+/* ═════════════════════ ATLAS PLATE ═════════════════════ */
+const plateMedia=$("#plateMedia"), plateImg=$("#plateImg"), plateAlt=$("#plateAlt");
+
+function compassSVG(size, color){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" stroke="${color}" stroke-width="1.2" opacity=".9"/>
+    <circle cx="50" cy="50" r="34" stroke="${color}" stroke-width=".8" stroke-dasharray="3 3" opacity=".7"/>
+    <path d="M50 12 L55 45 L82 50 L55 55 L50 88 L45 55 L18 50 L45 45 Z" stroke="${color}" stroke-width="1.1" fill="rgba(143,47,30,.06)"/>
+    <path d="M50 22 L53 47 L78 50 L53 53 L50 78 L47 53 L22 50 L47 47 Z" fill="${color}" opacity=".55"/>
+    <circle cx="50" cy="50" r="4.5" stroke="${color}" stroke-width="1.2"/>
+    <text x="50" y="9.5" text-anchor="middle" font-family="IM Fell English SC,serif" font-size="10" fill="${color}">N</text>
+  </svg>`;
+}
+
+function setIdlePlate(){
+  plateImg.classList.remove("loaded"); plateImg.style.display="none";
+  plateAlt.style.display="flex";
+  plateAlt.innerHTML = `
+    ${compassSVG(120,"#a07c26")}
+    <p class="font-display italic font-semibold text-xl md:text-2xl text-[var(--ink)]">Choose a chapter</p>
+    <p class="font-serif-it italic text-sm text-[var(--ink-faint)] max-w-[260px]">Open any chapter of the chronicle — this plate of the atlas will turn to its corresponding map.</p>`;
+  $("#capTitle").textContent="The Chronicle Awaits";
+  $("#capEra").textContent="Select a chapter to consult its plate";
+}
+
+function setFallbackPlate(topic){
+  plateImg.classList.remove("loaded"); plateImg.style.display="none";
+  plateAlt.style.display="flex";
+  plateAlt.innerHTML = `
+    ${compassSVG(96,"#a07c26")}
+    <div class="border border-dashed border-[#b09255] px-4 py-2 bg-[rgba(255,250,236,.5)]">
+      <p class="font-mono2 text-[12px] md:text-[13px] text-[var(--red-deep)]">maps/${topic.id}.jpg</p>
+    </div>
+    <p class="font-serif-it italic text-[13px] text-[var(--ink-faint)] max-w-[250px] leading-relaxed">Awaiting plate — drop your AI-generated vintage map into the <span class="font-mono2 not-italic text-[11.5px]">maps/</span> folder with this exact filename.</p>`;
+}
+
+function swapPlate(topic, plateNo){
+  plateMedia.classList.add("plate-swap");
+  setTimeout(()=>{
+    plateImg.style.display="block";
+    plateImg.onerror = ()=>setFallbackPlate(topic);
+    plateImg.onload  = ()=>{ plateAlt.style.display="none"; plateImg.classList.add("loaded"); };
+    plateImg.classList.remove("loaded");
+    plateImg.src = `maps/${topic.id}.jpg`;
+    plateImg.alt = `Vintage map plate — ${topic.t}`;
+    $("#capTitle").textContent = topic.t;
+    $("#capEra").textContent = "Extent · "+topic.era;
+    $("#plateNum").textContent = "PLATE "+plateNo;
+    // if cached & instantly loaded
+    if(plateImg.complete && plateImg.naturalWidth>0){ plateAlt.style.display="none"; plateImg.classList.add("loaded"); }
+    plateMedia.classList.remove("plate-swap");
+  },180);
+}
+
+setIdlePlate();
+
+/* ═════════════════════ SEARCH ═════════════════════ */
+let searchTimer;
+searchBox.addEventListener("input", e=>{
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(()=>{ state.query=e.target.value; renderList(false); },130);
+});
+
+/* ═════════════════════ MAP MANIFEST ═════════════════════ */
+const modal=$("#manifestModal");
+(function buildManifest(){
+  let html="", count=0;
+  for(const k of Object.keys(TABS)){
+    html += `<p class="font-fell text-[15px] tracking-wide text-[var(--ink)] mt-4 mb-1.5">§&nbsp; ${TABS[k].label}</p>`;
+    for(const t of TABS[k].topics){
+      count++;
+      html += `<div class="manifest-row"><i data-lucide="image" class="w-3.5 h-3.5 shrink-0 text-[var(--gold)]"></i>
+        <span class="font-mono2 text-[12px] text-[var(--ink-soft)]">maps/${t.id}.jpg</span></div>`;
+    }
+  }
+  $("#manifestList").innerHTML=html;
+  $("#manifestCount").textContent = count+" plates expected";
+})();
+$("#manifestBtn").addEventListener("click",()=>{modal.classList.remove("hidden");modal.classList.add("flex");lucide.createIcons();});
+modal.querySelectorAll("[data-close]").forEach(el=>el.addEventListener("click",()=>{modal.classList.add("hidden");modal.classList.remove("flex");}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){modal.classList.add("hidden");modal.classList.remove("flex");}});
+$("#copyManifest").addEventListener("click",function(){
+  const list = ALL_TOPICS.map(t=>`maps/${t.id}.jpg`).join("\n");
+  const done=()=>{const s=this.querySelector("span");s.textContent="Copied!";setTimeout(()=>s.textContent="Copy all filenames",1600);};
+  if(navigator.clipboard) navigator.clipboard.writeText(list).then(done).catch(done);
+  else{const ta=document.createElement("textarea");ta.value=list;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();done();}
+});
+
+/* ═════════════════════ INIT ═════════════════════ */
+renderTabs();
+renderList(false);
+// Open the first chapter at load so the atlas plate demonstrates itself
+const first = accList.querySelector(".acc");
+if(first) openAcc(first, true);
+lucide.createIcons();
+</script>
 </body>
 </html>
