@@ -3,77 +3,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian History Explorer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Great Indian History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f8fafc;
+            --header-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            --accent-color: #d97706; /* Elegant Amber */
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-radius: 12px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--header-gradient);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 30px;
+            padding: 0 20px;
+            align-items: flex-start;
+        }
+
+        /* Left Side: Accordion Content */
+        .content-section {
+            flex: 1.5;
+        }
+
+        .period-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .period-content.active {
+            display: block;
+        }
+
+        .period-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Accordion Design */
+        .accordion {
+            background: var(--card-bg);
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 18px 20px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            background: #f1f5f9;
+        }
+
+        .accordion.active {
+            background: var(--accent-color);
+            color: white;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .accordion::after {
+            content: '\002B'; /* Plus icon */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .accordion.active::after {
+            content: "\2212"; /* Minus icon */
+        }
+
+        .panel {
+            padding: 0 20px;
+            background: var(--card-bg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 15px;
+            margin-top: -10px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .panel-inner {
+            padding: 20px 0;
+        }
+
+        .lang-bn {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .lang-en {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Right Side: Map Display */
+        .map-section {
+            flex: 1;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 20px;
+            text-align: center;
+        }
+
+        .map-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+        }
+
+        .map-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #e2e8f0;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #cbd5e1;
+        }
+
+        #history-map {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+            border-radius: 8px;
+        }
+
+        #map-caption {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            .map-section {
+                position: relative;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>ভারতের ইতিহাস (Indian History)</h1>
+        <h1>The Great Indian History</h1>
         <nav>
-            <button class="tab-btn active" onclick="openPeriod('ancient', 'maps/ancient-india.jpg')">Ancient India</button>
-            <button class="tab-btn" onclick="openPeriod('medieval', 'maps/medieval-india.jpg')">Medieval India</button>
-            <button class="tab-btn" onclick="openPeriod('modern', 'maps/modern-india.jpg')">Modern India</button>
+            <button class="tab-btn active" onclick="openPeriod('ancient', 'Ancient India')">Ancient India</button>
+            <button class="tab-btn" onclick="openPeriod('medieval', 'Medieval India')">Medieval India</button>
+            <button class="tab-btn" onclick="openPeriod('modern', 'Modern India')">Modern India</button>
         </nav>
     </header>
 
     <main class="container">
-        <!-- Left Side: Topics List -->
+        
+        <!-- CONTENT SECTION (Left) -->
         <section class="content-section">
+            
+            <!-- ANCIENT INDIA -->
             <div id="ancient" class="period-content active">
-                <h2>প্রাচীন ভারত (Ancient India)</h2>
+                <h2 class="period-title">প্রাচীন ভারত (Ancient India)</h2>
                 
-                <button class="accordion" onclick="updateMap('maps/ivc-map.jpg')">সিন্ধু সভ্যতা (Indus Valley Civilization)</button>
+                <button class="accordion" onclick="updateMap('Prehistoric Age')">প্রাগৈতিহাসিক যুগ | Prehistoric Age</button>
                 <div class="panel">
-                    <p>হরপ্পা ও মহেঞ্জোদারোর নগর পরিকল্পনা, অর্থনীতি, ব্রোঞ্জ যুগের বৈশিষ্ট্য এবং সভ্যতার পতন সংক্রান্ত বিস্তারিত তথ্য এখানে থাকবে...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">প্যালিওলিথিক, মেসোলিথিক এবং নিওলিথিক যুগে মানুষের শিকারী জীবন থেকে কৃষিকাজে উত্তরণ। তাম্রপ্রস্তর (Chalcolithic) যুগে প্রথম ধাতুর ব্যবহার শুরু হয়।</p>
+                        <p class="lang-en">The transition of humans from hunter-gatherers to agriculturists through the Paleolithic, Mesolithic, and Neolithic ages, followed by the first use of metal in the Chalcolithic age.</p>
+                    </div>
                 </div>
 
-                <button class="accordion" onclick="updateMap('maps/maurya-map.jpg')">মৌর্য সাম্রাজ্য (Mauryan Empire)</button>
+                <button class="accordion" onclick="updateMap('Indus Valley Civilization')">সিন্ধু সভ্যতা | Indus Valley Civilization</button>
                 <div class="panel">
-                    <p>চন্দ্রগুপ্ত মৌর্য, অশোকের ধম্ম নীতি, মৌর্য প্রশাসন ও সাম্রাজ্যের বিস্তার। (এখানে আপনার বিস্তারিত নোটস বসাবেন)...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">হরপ্পা ও মহেঞ্জোদারোর উন্নত নগর পরিকল্পনা, পাকা রাস্তা, পয়ঃপ্রণালী, পোড়ামাটির শিল্প এবং ব্রোঞ্জ যুগের বৈশিষ্ট্য। এটি ছিল একটি নগরকেন্দ্রিক সভ্যতা।</p>
+                        <p class="lang-en">Advanced urban planning, baked brick houses, drainage systems, and bronze age characteristics of Harappa and Mohenjo-Daro. It was primarily an urban civilization.</p>
+                    </div>
                 </div>
-                
-                <!-- এখানে প্রাচীন ভারতের বাকি সব টপিক পরপর অ্যাড করবেন -->
+
+                <button class="accordion" onclick="updateMap('Vedic Period')">বৈদিক যুগ | Vedic Period</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">আর্যদের আগমন, ঋগ্বেদ ও পরবর্তী বৈদিক সাহিত্য রচনা। এই সময়ে গ্রামীণ সমাজের বিকাশ এবং বর্ণপ্রথা ও আশ্রম ব্যবস্থার উদ্ভব ঘটে।</p>
+                        <p class="lang-en">The arrival of Aryans, composition of the Rigveda and later Vedic texts. This era saw the development of a rural society, the Varna system, and Ashramas.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Mahajanapadas & Magadha')">মহাজনপদ ও মগধ | Mahajanapadas & Magadha</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">ষোড়শ মহাজনপদের উদ্ভব এবং বিম্বিসার ও অজাতশত্রুর নেতৃত্বে মগধের সাম্রাজ্য বিস্তার। হর্যাঙ্ক, শিশুনাগ এবং নন্দ বংশের শাসন।</p>
+                        <p class="lang-en">The rise of sixteen great states (Mahajanapadas) and the expansion of the Magadha empire under Bimbisara and Ajatashatru. Rule of Haryanka, Shishunaga, and Nanda dynasties.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Buddhism & Jainism')">বৌদ্ধ ও জৈন ধর্ম | Buddhism & Jainism</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">ষষ্ঠ শতকে গৌতম বুদ্ধ এবং মহাবীরের নেতৃত্বে বৈদিক আচারের বিরুদ্ধে অহিংসা ও সাম্যের উপর ভিত্তি করে ধর্মীয় আন্দোলন।</p>
+                        <p class="lang-en">Religious movements in the 6th century BCE led by Gautama Buddha and Mahavira, based on non-violence and equality, opposing rigid Vedic rituals.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Mauryan Empire')">মৌর্য সাম্রাজ্য | Mauryan Empire</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">চন্দ্রগুপ্ত মৌর্য কর্তৃক ভারতের প্রথম বৃহৎ সাম্রাজ্য প্রতিষ্ঠা। সম্রাট অশোকের কলিঙ্গ যুদ্ধ, 'ধম্ম' নীতি প্রচার এবং সুদক্ষ গুপ্তচর ও প্রশাসনিক ব্যবস্থা।</p>
+                        <p class="lang-en">Establishment of India's first vast empire by Chandragupta Maurya. Ashoka's Kalinga war, his policy of 'Dhamma', and a highly efficient administrative system.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Post-Mauryan Period')">মৌর্য-পরবর্তী যুগ | Post-Mauryan Period</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">শুঙ্গ ও সাতবাহন বংশের শাসন। পাশাপাশি ইন্দো-গ্রিক, শক এবং কুষাণদের (বিশেষত কণিষ্ক) ভারত আক্রমণ ও সংস্কৃতির মিশ্রণ।</p>
+                        <p class="lang-en">Rule of the Shunga and Satavahana dynasties. Simultaneous invasions and cultural assimilation by Indo-Greeks, Shakas, and Kushans (especially Kanishka).</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Sangam Age')">সঙ্গম যুগ | Sangam Age</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">প্রাচীন দক্ষিণ ভারতের চের, চোল এবং পাণ্ড্য রাজবংশের সমৃদ্ধ ইতিহাস এবং মাদুরাইতে রচিত উন্নত 'সঙ্গম সাহিত্য'।</p>
+                        <p class="lang-en">The rich history of ancient South India comprising the Chera, Chola, and Pandya dynasties, highlighted by the magnificent 'Sangam Literature' compiled in Madurai.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Gupta Empire')">গুপ্ত সাম্রাজ্য | Gupta Empire</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">সমুদ্রগুপ্ত ও দ্বিতীয় চন্দ্রগুপ্তের শাসনকাল, যাকে প্রাচীন ভারতের 'সুবর্ণ যুগ' বলা হয়। বিজ্ঞান, গণিত (আর্যভট্ট), সাহিত্য (কালিদাস) ও শিল্পের চরম বিকাশ।</p>
+                        <p class="lang-en">The reign of Samudragupta and Chandragupta II, known as the 'Golden Age' of ancient India. Pinnacle of science, mathematics (Aryabhata), literature (Kalidasa), and art.</p>
+                    </div>
+                </div>
             </div>
 
+            <!-- MEDIEVAL INDIA -->
             <div id="medieval" class="period-content">
-                <h2>মধ্যযুগীয় ভারত (Medieval India)</h2>
+                <h2 class="period-title">মধ্যযুগীয় ভারত (Medieval India)</h2>
                 
-                <button class="accordion" onclick="updateMap('maps/delhi-sultanate-map.jpg')">দিল্লী সুলতানি যুগ (Delhi Sultanate)</button>
+                <button class="accordion" onclick="updateMap('Tripartite Struggle')">ত্রিপাক্ষিক সংগ্রাম ও রাজপুত | Tripartite Struggle</button>
                 <div class="panel">
-                    <p>দাস, খলজী, তুঘলক, সৈয়দ ও লোদী বংশের শাসন। আলাউদ্দিন খলজীর বাজারদর নিয়ন্ত্রণ...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">কনৌজ দখলকে কেন্দ্র করে পাল, প্রতিহার এবং রাষ্ট্রকূটদের মধ্যে দীর্ঘ সংগ্রাম। এই সময়ে উত্তর ভারতে বিভিন্ন শক্তিশালী রাজপুত বংশের উত্থান ঘটে।</p>
+                        <p class="lang-en">The long struggle for control over Kannauj among the Palas, Pratiharas, and Rashtrakutas. This era also saw the rise of powerful Rajput clans in North India.</p>
+                    </div>
                 </div>
 
-                <button class="accordion" onclick="updateMap('maps/mughal-map.jpg')">মুঘল সাম্রাজ্য (Mughal Empire)</button>
+                <button class="accordion" onclick="updateMap('Arab & Turkish Invasions')">আরব ও তুর্কি আক্রমণ | Arab & Turkish Invasions</button>
                 <div class="panel">
-                    <p>বাবর থেকে আওরঙ্গজেব পর্যন্ত সাম্রাজ্য বিস্তার, মনসবদারি প্রথা, স্থাপত্য ও সাহিত্য...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">মুহাম্মদ বিন কাশিমের সিন্ধু বিজয় (৭১২ খ্রিঃ)। পরবর্তীতে সুলতান মাহমুদ এবং মুহম্মদ ঘুরীর ভারত আক্রমণ ও তরাইনের যুদ্ধ।</p>
+                        <p class="lang-en">Muhammad bin Qasim's conquest of Sindh (712 AD), followed by the invasions of Sultan Mahmud of Ghazni and Muhammad Ghori, leading to the Battles of Tarain.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Delhi Sultanate')">দিল্লী সুলতানি যুগ | Delhi Sultanate</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">দাস, খলজী, তুঘলক, সৈয়দ এবং লোদী—এই পাঁচটি বংশের শাসন। আলাউদ্দিন খলজীর বাজারদর নিয়ন্ত্রণ এবং ইলতুৎমিশ ও বলবনের শাসননীতি।</p>
+                        <p class="lang-en">Rule of five dynasties: Slave, Khalji, Tughlaq, Sayyid, and Lodi. Notable for Alauddin Khalji's market control and the administrative policies of Iltutmish and Balban.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Provincial Kingdoms')">প্রাদেশিক রাজ্য (বিজয়নগর ও বাহমনী) | Provincial Kingdoms</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">হরিহর ও বুক্কা কর্তৃক বিজয়নগর সাম্রাজ্য প্রতিষ্ঠা (কৃষ্ণদেব রায়ের স্বর্ণযুগ) এবং হাসান গঙ্গু কর্তৃক দাক্ষিণাত্যে বাহমনী সাম্রাজ্যের উত্থান।</p>
+                        <p class="lang-en">Founding of the Vijayanagara Empire by Harihara and Bukka (Golden age under Krishnadevaraya) and the rise of the Bahmani Sultanate in the Deccan by Hasan Gangu.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Bhakti & Sufi Movements')">ভক্তি ও সুফি আন্দোলন | Bhakti & Sufi Movements</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">কবীর, গুরু নানক, শ্রীচৈতন্য এবং বিভিন্ন সুফি সন্তদের নেতৃত্বে ভক্তি ও প্রেমের মাধ্যমে ঈশ্বরলাভ এবং সামাজিক সম্প্রীতির বার্তা।</p>
+                        <p class="lang-en">Movements led by Kabir, Guru Nanak, Sri Chaitanya, and Sufi saints emphasizing devotion, love for God, and social harmony above orthodox rituals.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Mughal Empire')">মুঘল সাম্রাজ্য | Mughal Empire</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">বাবরের পানিপথ বিজয় থেকে শুরু। আকবরের ধর্মীয় সহিষ্ণুতা ও মনসবদারি প্রথা, শাহজাহানের স্থাপত্য (তাজমহল) এবং আওরঙ্গজেবের দাক্ষিণাত্য নীতি।</p>
+                        <p class="lang-en">Starting from Babur's victory at Panipat. Known for Akbar's religious tolerance and Mansabdari system, Shah Jahan's architecture, and Aurangzeb's Deccan policies.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Maratha Empire')">মারাঠা সাম্রাজ্য | Maratha Empire</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">ছত্রপতি শিবাজীর নেতৃত্বে শক্তিশালী মারাঠা শক্তির উত্থান, গেরিলা যুদ্ধনীতি এবং পরবর্তীকালে পেশোয়াদের অধীনে সাম্রাজ্যের বিস্তৃতি।</p>
+                        <p class="lang-en">The rise of a powerful Maratha power under Chhatrapati Shivaji, utilizing guerrilla warfare, and the subsequent expansion of the empire under the Peshwas.</p>
+                    </div>
                 </div>
             </div>
 
+            <!-- MODERN INDIA -->
             <div id="modern" class="period-content">
-                <h2>আধুনিক ভারত (Modern India)</h2>
+                <h2 class="period-title">আধুনিক ভারত (Modern India)</h2>
                 
-                <button class="accordion" onclick="updateMap('maps/revolt-1857-map.jpg')">১৮৫৭ সালের মহাবিদ্রোহ (Revolt of 1857)</button>
+                <button class="accordion" onclick="updateMap('Advent of Europeans')">ইউরোপীয়দের আগমন | Advent of Europeans</button>
                 <div class="panel">
-                    <p>সিপাহী বিদ্রোহের কারণ, বিভিন্ন কেন্দ্রের নেতৃত্ব (কানপুর, লক্ষ্ণৌ, ঝাঁসি) এবং ফলাফল...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">পর্তুগিজ, ডাচ, ফরাসি ও ব্রিটিশদের বাণিজ্য বিস্তারের লড়াই। পলাশী (১৭৫৭) ও বক্সারের (১৭৬৪) যুদ্ধের মাধ্যমে ব্রিটিশ আধিপত্যের সূচনা।</p>
+                        <p class="lang-en">The struggle for trade dominance among the Portuguese, Dutch, French, and British. The establishment of British supremacy through the battles of Plassey (1757) and Buxar (1764).</p>
+                    </div>
                 </div>
 
-                <button class="accordion" onclick="updateMap('maps/freedom-struggle-map.jpg')">গান্ধীযুগ ও স্বাধীনতা সংগ্রাম</button>
+                <button class="accordion" onclick="updateMap('British Policies & Expansion')">ব্রিটিশ বিস্তার ও ভূমিরাজস্ব নীতি | British Expansion</button>
                 <div class="panel">
-                    <p>অসহযোগ, আইন অমান্য ও ভারত ছাড়ো আন্দোলন। নেতাজীর আজাদ হিন্দ ফৌজ...</p>
+                    <div class="panel-inner">
+                        <p class="lang-bn">মহীশূর, মারাঠা ও শিখদের পরাজয়। লর্ড কর্নওয়ালিসের চিরস্থায়ী বন্দোবস্ত এবং লর্ড ডালহৌসির স্বত্ববিলোপ নীতির মাধ্যমে সাম্রাজ্য বিস্তার।</p>
+                        <p class="lang-en">Defeat of Mysore, Marathas, and Sikhs. Expansion via policies like Cornwallis's Permanent Settlement and Dalhousie's Doctrine of Lapse.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Revolt of 1857')">১৮৫৭ সালের মহাবিদ্রোহ | Revolt of 1857</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">এনফিল্ড রাইফেলের কার্তুজকে কেন্দ্র করে শুরু হওয়া সিপাহী বিদ্রোহ, যা কানপুর, লক্ষ্ণৌ ও ঝাঁসিতে গণ-আন্দোলনের রূপ নেয়। ইস্ট ইন্ডিয়া কোম্পানির শাসনের অবসান।</p>
+                        <p class="lang-en">The Sepoy Mutiny sparked by the Enfield rifle cartridges, escalating into a mass uprising in Kanpur, Lucknow, and Jhansi. It ended East India Company rule.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Socio-Religious Reforms')">সমাজ-ধর্মীয় সংস্কার | Socio-Religious Reforms</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">রাজা রামমোহন রায়ের ব্রাহ্ম সমাজ (সতীদাহ প্রথা রদ), ঈশ্বরচন্দ্র বিদ্যাসাগরের বিধবা বিবাহ আন্দোলন এবং স্বামী বিবেকানন্দের রামকৃষ্ণ মিশন।</p>
+                        <p class="lang-en">Movements like Raja Rammohun Roy's Brahmo Samaj (abolition of Sati), Vidyasagar's widow remarriage movement, and Swami Vivekananda's Ramakrishna Mission.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Indian National Congress')">জাতীয় কংগ্রেসের উত্থান | Indian National Congress</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">১৮৮৫ সালে কংগ্রেস প্রতিষ্ঠা। প্রথম দিকের নরমপন্থী নীতি এবং পরবর্তীতে বঙ্গভঙ্গ (১৯০৫) বিরোধী স্বদেশী আন্দোলন ও চরমপন্থী (লাল-বাল-পাল) নেতাদের উত্থান।</p>
+                        <p class="lang-en">Formation of INC in 1885. The shift from Moderate politics to Extremist (Lal-Bal-Pal) leadership following the anti-Partition Swadeshi movement of 1905.</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Gandhian Era')">গান্ধীযুগ ও গণ-আন্দোলন | Gandhian Era</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">মহাত্মা গান্ধীর নেতৃত্বে তিনটি বৃহৎ আন্দোলন: অসহযোগ (১৯২০), আইন অমান্য (ডান্ডি অভিযান, ১৯৩০) এবং ভারত ছাড়ো আন্দোলন (১৯৪২)।</p>
+                        <p class="lang-en">Three major mass movements led by Mahatma Gandhi: Non-Cooperation (1920), Civil Disobedience (Dandi March, 1930), and Quit India Movement (1942).</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Revolutionary Movement')">বিপ্লবী আন্দোলন ও INA | Revolutionary Movement</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">ভগত সিং, সূর্য সেন এবং চন্দ্রশেখর আজাদের সশস্ত্র সংগ্রাম। সুভাষচন্দ্র বসু কর্তৃক আজাদ হিন্দ ফৌজ (INA) গঠন করে ব্রিটিশদের বিরুদ্ধে সামরিক অভিযান।</p>
+                        <p class="lang-en">Armed struggle by revolutionaries like Bhagat Singh, Surya Sen, and Chandrashekhar Azad. Subhas Chandra Bose's military campaign via the Indian National Army (INA).</p>
+                    </div>
+                </div>
+
+                <button class="accordion" onclick="updateMap('Independence & Partition')">স্বাধীনতা ও দেশভাগ | Independence & Partition</button>
+                <div class="panel">
+                    <div class="panel-inner">
+                        <p class="lang-bn">ক্যাবিনেট মিশন এবং মাউন্টব্যাটেন পরিকল্পনা। ১৯৪৭ সালের ১৫ই আগস্ট দেশভাগ ও স্বাধীনতার প্রাপ্তি, এবং পরবর্তীতে দেশীয় রাজ্যগুলির একীকরণ।</p>
+                        <p class="lang-en">Cabinet Mission and Mountbatten Plan. The tragic partition and attainment of independence on August 15, 1947, followed by the integration of princely states.</p>
+                    </div>
                 </div>
             </div>
+
         </section>
 
-        <!-- Right Side: Map Display -->
+        <!-- MAP SECTION (Right) -->
         <aside class="map-section">
-            <h3>ঐতিহাসিক মানচিত্র</h3>
+            <h3 id="map-title">ঐতিহাসিক মানচিত্র</h3>
             <div class="map-container">
-                <img id="history-map" src="maps/ancient-india.jpg" alt="Map of Indian History">
-                <p id="map-caption">ম্যাপটি দেখতে বামদিকের টপিকে ক্লিক করুন</p>
+                <!-- Placeholder text until you add map images -->
+                <p id="no-map-text" style="color: #94a3b8; font-style: italic;">ম্যাপ लोड হচ্ছে...<br>(আপনার Local Image এখানে দেখাবে)</p>
+                <img id="history-map" src="" alt="Historical Map" style="display: none;">
             </div>
+            <p id="map-caption">ম্যাপ দেখতে বামদিকের যেকোনো টপিকে ক্লিক করুন</p>
         </aside>
+
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        // 1. Tab Switching Logic
+        function openPeriod(periodId, periodName) {
+            // Hide all content
+            const contents = document.querySelectorAll('.period-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Deactivate all buttons
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            // Activate selected
+            document.getElementById(periodId).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            // Reset Map container
+            document.getElementById('map-title').innerText = periodName + " - Map";
+            document.getElementById('map-caption').innerText = "ম্যাপ দেখতে বামদিকের যেকোনো টপিকে ক্লিক করুন";
+            document.getElementById('history-map').style.display = 'none';
+            document.getElementById('no-map-text').style.display = 'block';
+
+            // Close all open accordions when switching tabs
+            const accordions = document.querySelectorAll('.accordion');
+            accordions.forEach(acc => {
+                acc.classList.remove('active');
+                acc.nextElementSibling.style.maxHeight = null;
+            });
+        }
+
+        // 2. Accordion Logic
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                // Close other accordions in the same section
+                const siblings = this.parentElement.querySelectorAll('.accordion');
+                siblings.forEach(sibling => {
+                    if (sibling !== this) {
+                        sibling.classList.remove('active');
+                        sibling.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Toggle current
+                this.classList.toggle('active');
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        });
+
+        // 3. Map Updating Logic
+        function updateMap(topicName) {
+            const mapImage = document.getElementById('history-map');
+            const noMapText = document.getElementById('no-map-text');
+            const mapCaption = document.getElementById('map-caption');
+            const mapTitle = document.getElementById('map-title');
+
+            mapTitle.innerText = topicName;
+            mapCaption.innerText = topicName + " - এর মানচিত্র";
+
+            // ★ IMPORTANT: এখানে আপনার ফোল্ডারে থাকা ম্যাপের নামগুলো সেট করতে হবে।
+            // যেহেতু আপনার কাছে এখনও ছবি নেই, আমি একটি ডামি লজিক দিয়ে রাখলাম।
+            // আপনি ছবি ডাউনলোড করে এই নামগুলো অনুযায়ী 'maps/' ফোল্ডারে রাখবেন।
+            
+            let imagePath = "";
+            let formattedName = topicName.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+            imagePath = `maps/${formattedName}.jpg`; 
+
+            // ম্যাপ পরিবর্তনের অ্যানিমেশন
+            mapImage.style.opacity = 0;
+            
+            setTimeout(() => {
+                noMapText.style.display = 'none';
+                mapImage.style.display = 'block';
+                // যখন আপনি অরিজিনাল ছবি দেবেন তখন নিচের লাইনটি অ্যাক্টিভ করবেন:
+                // mapImage.src = imagePath; 
+                
+                // ডেমো পারপাস: যেহেতু ছবি নেই, আমি একটি অনলাইন প্লেসহোল্ডার জেনারেট করছি
+                mapImage.src = `https://via.placeholder.com/600x450/2C3E50/FFFFFF?text=${topicName.replace(/ /g, '+')}+Map`;
+                
+                mapImage.style.opacity = 1;
+            }, 300);
+        }
+    </script>
 </body>
 </html>
